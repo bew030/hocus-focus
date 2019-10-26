@@ -1,13 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Study Aid Popup</title>
-    <body style="width:200px; height:200px">
+    <body style="width:200px; height:150px">
     <link rel="stylesheet" href="popup.css">
   </head>
   <body>
-
-
     <div class="wrapper">
 
     <div class="box1" style="text-align: center">
@@ -22,11 +20,6 @@
 
 
     <div class="box3" style="text-align: center">
-      <div class="menu">
-        <a href="#" align="left" id="Tab1">Timer</a>
-        <a href="#" id="Tab2">Blacklist</a>
-        <a href="#" id="Tab3">To Do</a>
-      </div>
       <hr margin: 10px>
       <!--Class Switch handles the toggle button-->
     <label class="switch">
@@ -38,26 +31,23 @@
         <!--END-->
       </div>
     </label>
+    <div style="text-align: center">
+        <h1>
+            <span id="hour">00</span> :
+            <span id="min">00</span> :
+            <span id="sec">00</span>
+        </h1>
+    </div>
   </div>
 
     <div class="box4">
-      <div style="text-align: center">
-          <h1>
-              <span id="hour">00</span> :
-              <span id="min">00</span> :
-              <span id="sec">00</span>
-          </h1>
-      </div>
+      <h3>Total Hours Studied: <span id="totalHour">00</span> :
+      <span id="totalMin">00</span> :
+      <span id="totalSec">00</span></h3>
+      <div id="settings"><a href="options.html">Settings</a></div>
     </div>
-
-    <div class="box5">
-      <h3>Time Since Last Study Session:</h3>
-      <p id="demo"> this should change</p>
-    <button>Settings</button></div>
     </div>
 
     <script src="popup.js"></script>
-
-
   </body>
 </html>

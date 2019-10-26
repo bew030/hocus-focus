@@ -60,7 +60,7 @@ function removeURL(){
 function restoreOptions(){
   //retrive array from cloud
   chrome.storage.sync.get({
-    blockList:[],
+    blockList:["reddit.com"],
   }, function(items) {
     urlarray = items.blockList;
     //add each element to html list and display
