@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Study Aid Popup</title>
-    <body style="width:200px; height:200px">
+    <body style="width:200px; height:150px">
     <link rel="stylesheet" href="popup.css">
   </head>
   <body>
@@ -17,7 +17,10 @@
       align="center" id='BookIcon'>
     </div>
 
-    <div class="box3" style="margin-left: 28px">
+
+
+    <div class="box3" style="text-align: center">
+      <hr margin: 10px>
       <!--Class Switch handles the toggle button-->
     <label class="switch">
       <input type="checkbox" id="togBtn">
@@ -28,22 +31,18 @@
         <!--END-->
       </div>
     </label>
+    <div style="text-align: center">
+        <h1>
+            <span id="hour">00</span> :
+            <span id="min">00</span> :
+            <span id="sec">00</span>
+        </h1>
+    </div>
   </div>
 
     <div class="box4">
-      <div style="text-align: center">
-          <h1>
-              <span id="hour">00</span> :
-              <span id="min">00</span> :
-              <span id="sec">00</span>
-          </h1>
-      </div>
-    </div>
-
-    <div class="box5">
-      <h3>Time Since Last Study Session:</h3>
-      <p id="demo"> this should change</p>
-    <div id="settings"><a href="options.html">Settings</a></div>
+      <h3>Duration Since Last Study Session:</h3>
+      <div id="settings"><a href="options.html">Settings</a></div>
     </div>
     </div>
 
