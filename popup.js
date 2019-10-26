@@ -5,6 +5,15 @@ var hour = 0;
 var startstop = 0; // boolean condition for whether button should display start or stop
 var studyDataArr = []; //global array for total study data
 
+
+document.addEventListener('DOMContentLoaded', function () {
+  restoreData();
+  document.getElementById("totalSec").innerHTML = printTime(studyDataArr[2]);
+  document.getElementById("totalMin").innerHTML = printTime(studyDataArr[1]);
+  document.getElementById("totalHour").innerHTML = printTime(studyDataArr[0]);
+});
+
+
 var el = document.getElementById("togBtn");
 if(el){
     el.addEventListener("click", startStop);
@@ -21,7 +30,7 @@ function startStop() { /* Toggle StartStop */
     else if (startstop === 2) {
         startstop = 0;
         stop();
-        loadData();
+        //loadData();
     }
 }
 
@@ -79,7 +88,7 @@ function startStop() { /* Toggle StartStop */
 // function to upload current study session data to the cloud
 function loadData() {
     // declare array with new data
-    var tempStudyDataArr = new Array(hourOut, minOut, secOut);
+    var tempStudyDataArr = new Array(hour, min, sec);
     restoreData();
 
     // add seconds to aggregate data, carry if needed
