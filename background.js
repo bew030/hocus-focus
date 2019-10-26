@@ -14,8 +14,12 @@ function stopListening(){
     chrome.extension.onRequest.removeListener(blockWebsite);
 }
 
-function blockWebsite(){
-  alert("BLOCKED");
+function blockWebsite(callback){
+  //alert("fuck off!!!");
+
+    chrome.tabs.query({active: true, currentWindow:true}, function(tabs)
+{chrome.tabs.remove(tabs[0].id, function() { });
+});
 }
 
 function primeURLarray(){
