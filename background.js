@@ -6,7 +6,8 @@ var objarray = [{urlContains: "reddit.com"}];
 chrome.runtime.onInstalled.addListener(primeURLarray());
 
 function listenURLs(){
-  chrome.webNavigation.onBeforeNavigate.addListener(blockWebsite, {url: objarray});
+  chrome.webNavigation.onBeforeNavigate.addListener(blockWebsite,
+    {url: [{urlContains: "reddit"}]});
 }
 
 function stopListening(){
