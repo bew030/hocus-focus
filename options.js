@@ -91,14 +91,13 @@ var completedTasksList = [];
 var el = document.getElementById("submitter");
 if(el){
   el.addEventListener("click", addToDoList);
-  el.addEventListener("click",displayToDoList);
 }
 
 function addToDoList(){
     the_task = [] 
     var ul = document.getElementById("list_tasks");
     var input = document.getElementById("userInput");
-    var li = document.createElement("div");
+    var li = document.createElement("li");
 
     var checkbox = document.createElement("input"); 
     checkbox.type = "checkbox"; 
