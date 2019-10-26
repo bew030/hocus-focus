@@ -102,7 +102,7 @@ function loadData() {
 
     // store new aggregate study data back on the cloud
     chrome.storage.sync.set({studyDataList:studyDataArr}, function() {
-      console.log(input.value + 'was saved');
+      console.log('Data was saved');
     });
 }
 
