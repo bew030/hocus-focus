@@ -3,6 +3,7 @@ var sec = 1;
 var min = 0;
 var hour = 0;
 var startstop = 0; // boolean condition for whether button should display start or stop
+var studyDataArr = []; //global array for total study data
 
 var el = document.getElementById("togBtn");
 if(el){
@@ -20,6 +21,7 @@ function startStop() { /* Toggle StartStop */
     else if (startstop === 2) {
         startstop = 0;
         stop();
+        loadData();
     }
 }
 
@@ -71,6 +73,58 @@ function startStop() { /* Toggle StartStop */
         document.getElementById("hour").innerHTML = printTime(hour);
     }
 
+// function to upload current study session data to the cloud
+function loadData() {
+    // declare array with new data
+    var tempStudyDataArr = new Array(hourOut, minOut, secOut);
+    restoreData();
+
+    // add seconds to aggregate data, carry if needed
+    if (tempStudyDataArr[2] + studyDataArr[2] >= 60) {
+      studyDataArr[1] = studyDataArr[1] + 1;
+      studyDataArr[2] = tempStudyDataArr[2] + studyDataArr[2] - 60;
+    }
+    else {
+      studyDataArr[2] = studyDataArr[2] + tempStudyDataArr[2];
+    }
+
+    // add minutes to aggregate data, carry if needed
+    if (tempStudyDataArr[1] + studyDataArr[1] >= 60) {
+      studyDataArr[0] = studyDataArr[0] + 1;
+      studyDataArr[1] = tempStudyDataArr[1] + studyDataArr[1] - 60;
+    }
+    else {
+      studyDataArr[1] = studyDataArr[1] + tempStudyDataArr[1];
+    }
+
+    // add hours to aggregate data
+    studyDataArr[0] = studyDataArr[0] + tempStudyDataArr[0]
+
+    // store new aggregate study data back on the cloud
+    chrome.storage.sync.set({studyDataList:studyDataArr}, function() {
+      console.log(input.value + 'was saved');
+    });
+}
+
+// restore the state of study data
+function restoreData() {
+  chrome.storage.sync.get({
+    studyDataList:[],
+  }, function(items) {
+    studyDataArr = items.studyDataList;
+  });
+}
+
+function clearData() {
+  studyDataArr[0] = 0;
+  studyDataArr[1] = 0;
+  studyDataArr[2] = 0;
+
+  // store data that has been reset back to studyDataList
+  chrome.storage.sync.set({studyDataList:studyDataArr}, function() {
+    console.log(input.value + 'was saved');
+  });
+}
 
 // This block enables links from popup.html to open in a new tab
 document.addEventListener('DOMContentLoaded', function () {
