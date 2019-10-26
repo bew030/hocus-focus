@@ -8,12 +8,12 @@ var studyDataArr = []; //global array for total study data
 var el = document.getElementById("togBtn");
 if(el){
     el.addEventListener("click", startStop);
-  // el.addEventListener("click", secondFunction);
 }
 
 
 function startStop() { /* Toggle StartStop */
     startstop = startstop + 1;
+    chrome.browserAction.setBadgeText({text: '00:00'});
     if (startstop === 1) {
         reset();
         start();
@@ -50,6 +50,9 @@ function startStop() { /* Toggle StartStop */
             min = 0;
             hour = hour+1;
         }
+        
+        var time_string = String(minOut)+":"+String(secOut)
+        chrome.browserAction.setBadgeText({text: time_string});
 
         document.getElementById("sec").innerHTML = secOut;
         document.getElementById("min").innerHTML = minOut;

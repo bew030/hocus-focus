@@ -93,7 +93,7 @@ if(el){
   el.addEventListener("click", addToDoList);
 }
 
-var list_iterator = 0; 
+var list_iterator = 0;
 function addToDoList(){
     the_task = [] 
     var ul = document.getElementById("list_tasks");
@@ -102,10 +102,9 @@ function addToDoList(){
 
     var checkbox = document.createElement("input"); 
     checkbox.type = "checkbox"; 
-    checkbox.setAttribute('id',list_iterator); 
-    list_iterator = list_iterator+1; 
+    checkbox.setAttribute('id',input.value); 
 
-    li.setAttribute('id',input.value); // need to grab this later 
+    li.setAttribute('id',input.value);
     li.appendChild(document.createTextNode(input.value));
     li.appendChild(checkbox);
     ul.appendChild(li);
@@ -156,4 +155,3 @@ function restoreToDoList(){
 // button events 
 //document.addEventListener('DOMContentLoaded', restoreToDoList);
 document.getElementById('submitter').addEventListener('click',addToDoList);
-
