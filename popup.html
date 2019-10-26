@@ -7,66 +7,71 @@
   </head>
   <body>
 
-
+    <!-- Handles the top name and logo elements -->
     <div class="wrapper">
+      <div class="box1" style="text-align: center">
+        <h1>Study Aid</h1>
+      </div>
 
-    <div class="box1" style="text-align: center">
-      <h1>Study Aid</h1>
+      <div class="box2" style="margin-top: 10px; text-align: center">
+        <img src='address_book.png' width="60" height="60"
+        align="center" id='BookIcon'>
+      </div>
     </div>
 
-    <div class="box2" style="margin-top: 10px">
-      <img src='address_book.png' width="60" height="60"
-      align="center" id='BookIcon'>
-    </div>
-
-    <div class="box3" style="text-align: center">
-      <div class="tab">
-      <button class="tablinks" onclick="openTab(event, 'Timer')">Timer</button>
-      <button class="tablinks" onclick="openTab(event, 'Blacklist')">Blacklist</button>
-      <button class="tablinks" onclick="openTab(event, 'To Do')">To Do</button>
-      </div>
-      <div id="Timer" class="tabcontent">
-        <h3>Timer</h3>
-        <p>Timer shit here</p>
-      </div>
-
-      <div id="Blaclist" class="tabcontent">
-        <h3>Blacklist</h3>
-        <p>fuckity fuck fuck</p>
-      </div>
-
-      <div id="To Do" class="tabcontent">
-        <h3>To Do</h3>
-        <p>fuck you</p>
-      </div>
+      <!-- Creates line between logo and name and rest of elements -->
       <hr margin: 10px>
-      <!--Class Switch handles the toggle button-->
-    <label class="switch">
-      <input type="checkbox" id="togBtn">
-      <div class="slider round">
-        <!--ADDED HTML, text inside the slider box -->
-        <span class="study on">STOP</span>
-        <span class="study off">START</span>
-        <!--END-->
+      <div class="innerwrapper">
+        <div class="innerbox1" style="text-align: center">
+          <!--Class Switch handles the toggle button-->
+        <label class="switch">
+          <input type="checkbox" id="togBtn">
+          <div class="slider round">
+            <!--ADDED HTML, text inside the slider box -->
+            <span class="study on">STOP</span>
+            <span class="study off">START</span>
+            <!--END-->
+          </div>
+        </label>
       </div>
-    </label>
-  </div>
 
-    <div class="box4">
-      <div style="text-align: center">
-          <h1>
-              <span id="hour">00</span> :
-              <span id="min">00</span> :
-              <span id="sec">00</span>
-          </h1>
+        <div class="innerbox2" style="text-align: center">
+              <h1>
+                  <span id="hour">00</span> :
+                  <span id="min">00</span> :
+                  <span id="sec">00</span>
+              </h1>
+        </div>
+
+        <div class="innerbox3" style="text-align: center">
+          <h3>Total Hours Studied: </h3>
+          <a href="options.html" class="button">Settings</a>
+        </div>
       </div>
-    </div>
 
-    <div class="box5">
-      <h3>Time Since Last Study Session:</h3>
-      <p id="demo"> this should change</p>
-    <button>Settings</button></div>
-    </div>
+<!---
+<div class="tab" style="text-align: center">
+  <button class="tablinks" onclick="openCity(event, 'Timer')">Timer</button>
+  <button class="tablinks" onclick="openCity(event, 'Blacklist')">Blacklist</button>
+  <button class="tablinks" onclick="openCity(event, 'To Do')">To Do</button>
+</div>
+
+
+<div id="Timer" class="tabcontent"></div>
+<div id="Blacklist" class="tabcontent">
+  <h3>Blacklist</h3>
+  <p>oh fuck oh shit</p>
+</div>
+
+<div id="To Do" class="tabcontent">
+  <h3>To Do</h3>
+  <p>fucking fuckerz</p>
+</div>
+
+-->
+
+
+
 
     <script src="popup.js"></script>
 
