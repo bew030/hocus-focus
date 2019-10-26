@@ -1,0 +1,40 @@
+<html>
+<body>
+    <input type="text" id="userInput">Enter a task</input>
+    <button id="submitter">Submit</button>
+    <button id="finalizer">Create Checklist</button>
+    <div id="test"></div>
+    <div id="output"></div>
+</body>
+
+<script>
+    var tasksList = []; 
+    var el = document.getElementById("submitter");
+    if(el){
+        el.addEventListener("click", addToDoList);
+        el.addEventListener("click",displayToDoList);
+    }
+
+    function addToDoList() {
+        var input = document.getElementById("userInput").value; 
+        tasksList.push(input); 
+    }
+
+    function displayToDoList() {
+        returnString = "";
+        for (i = 0; i < tasksList.length; i++) {
+            returnString += tasksList[i]+"<br>";
+        }       
+        document.getElementById("output").innerHTML = returnString;
+    }
+
+    var submit_button = document.getElementById("finalizer");
+    if(submit_button){
+        submit_button.addEventListener("click", checkboxes);
+    }
+
+    function checkboxes() {
+        
+    }
+</script>
+</html>

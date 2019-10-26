@@ -1,6 +1,30 @@
 //global array for storing URLs to block
 var urlarray = [];
 
+// global array for todo list 
+var tasksList = []; 
+var descriptions = []; // MAYBE
+var completedTasksList = []; 
+
+var el = document.getElementById("submitter");
+if(el){
+  el.addEventListener("click", addToDoList);
+  el.addEventListener("click",displayToDoList);
+}
+
+function addToDoList(){
+    var ul = document.getElementById("list_tasks");
+    var input = document.getElementById("userInput");
+    var li = document.createElement("div");
+
+    li.setAttribute('id',input.value); // setting ID attribute
+    li.appendChild(document.createTextNode(input.value));
+    ul.appendChild(li);
+
+    tasksList.push(input.value);
+}
+
+
 //function that adds a URL to blacklist
 function addURL(){
 
@@ -75,6 +99,9 @@ function restoreOptions(){
     }
   });
 }
+
+// button events 
+document.getElementById('submitter').addEventListener('click',addToDoList);
 
 //button events
 document.addEventListener('DOMContentLoaded', restoreOptions);
