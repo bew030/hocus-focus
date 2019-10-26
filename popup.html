@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="popup.css">
   </head>
   <body>
+
+
     <div class="wrapper">
 
     <div class="box1" style="text-align: center">
@@ -17,7 +19,29 @@
       align="center" id='BookIcon'>
     </div>
 
-    <div class="box3" style="margin-left: 28px">
+
+
+    <div class="box3" style="text-align: center">
+      <div class="menu">
+        <a href="#" align="left" id="Tab1">Timer</a>
+        <a href="#" id="Tab2">Blacklist</a>
+        <a href="#" id="Tab3">To Do</a>
+      </div>
+      <div id="London" class="tabcontent">
+        <h3>London</h3>
+        <p>London is the capital city of England.</p>
+      </div>
+
+      <div id="Paris" class="tabcontent">
+        <h3>Paris</h3>
+        <p>Paris is the capital of France.</p>
+      </div>
+
+      <div id="Tokyo" class="tabcontent">
+        <h3>Tokyo</h3>
+        <p>Tokyo is the capital of Japan.</p>
+      </div>
+      <hr margin: 10px>
       <!--Class Switch handles the toggle button-->
     <label class="switch">
       <input type="checkbox" id="togBtn">
@@ -47,5 +71,7 @@
     </div>
 
     <script src="popup.js"></script>
+
+
   </body>
 </html>
