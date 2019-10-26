@@ -8,9 +8,9 @@ var studyDataArr = []; //global array for total study data
 
 document.addEventListener('DOMContentLoaded', function () {
   restoreData();
-  document.getElementById("totalSec").innerHTML = printTime(studyDataArr[2]);
-  document.getElementById("totalMin").innerHTML = printTime(studyDataArr[1]);
-  document.getElementById("totalHour").innerHTML = printTime(studyDataArr[0]);
+  // document.getElementById("totalSec").innerHTML = printTime(studyDataArr[2]);
+  // document.getElementById("totalMin").innerHTML = printTime(studyDataArr[1]);
+  // document.getElementById("totalHour").innerHTML = printTime(studyDataArr[0]);
 });
 
 
@@ -87,15 +87,15 @@ function startStop() { /* Toggle StartStop */
     }
 
     function reset() {
-        var sec = 0;
-        var min = 0;
-        var hour = 0;
+        sec = 0;
+        min = 0;
+        hour = 0;
 
         document.getElementById("sec").innerHTML = printTime(sec);
         document.getElementById("min").innerHTML = printTime(min);
         document.getElementById("hour").innerHTML = printTime(hour);
     }
-}
+
 // function to upload current study session data to the cloud
 function loadData() {
     // declare array with new data
