@@ -4,6 +4,7 @@
   /* Changes the width of the entire slider*/
   width: 90px;
   height: 34px;
+  /*.align: center;*/
 }
 
 /* DO NOT DELETE anything in .slider, this maintains the circle slider */
