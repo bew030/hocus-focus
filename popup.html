@@ -6,30 +6,41 @@
     <link rel="stylesheet" href="popup.css">
   </head>
   <body>
-    <div style= "width:100%">
-    <div id="header">
-    <img src='address_book.png' width="60" height="60"
-    align="left" id='BookIcon'>
+    <div class="wrapper">
 
-    <h1>Study Aid</h1>
+    <div class="box1"><img src='address_book.png' width="60" height="60"
+    align="left" id='BookIcon'>
     </div>
+
+    <div class="box2">
+    <h1 style="text-align: center">Study Aid</h1>
     </div>
-    <!--Class Switch handles the toggle button-->
-    <label class="switch" id ='checkPage'>
+
+    <div class="box3"><!--Class Switch handles the toggle button-->
+    <label class="switch">
       <input type="checkbox" id="togBtn">
       <div class="slider round">
         <!--ADDED HTML, text inside the slider box -->
-        <span class="study on">START</span>
-        <span class="study off">STOP</span>
+        <span class="study on">STOP</span>
+        <span class="study off">START</span>
         <!--END-->
       </div>
     </label>
+  </div>
 
+    <div class="box4">
+      <h3>Time Studied:</h3>
+    </div>
 
-    <h3>Time Studied:</h3>
-    <h3>Time Since Last Study Session:</h3>
+    <div class="box5">
+      <h3>Time Since Last Study Session:</h3>
       <p id="demo"> this should change</p>
-    <button>Settings</button>
+    <button>Settings</button></div>
+    </div>
+
+
+  
+
     <script src="popup.js"></script>
   </body>
 </html>
