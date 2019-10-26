@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<title> 
+			DOM Input Checkbox Property 
+		</title> 
+	</head> 
+	<body style = "text-align: center;"> 
+		<p>Click the button to create a checkbox.</p> 
+		<button onclick="geek()"> Click me!</button> 
+        <br> 
+        <div id = 'buttonworked'></div>
+		<div id = "myDiv"></div> 
+		<script> 
+		function geek() { 
+            /*
+              
+            // creating label for checkbox 
+            var label = document.createElement('label'); 
+              
+            // assigning attributes for  
+            // the created label tag  
+            label.htmlFor = "id"; 
+              
+            // appending the created text to  
+            // the created label tag  
+            label.appendChild(document.createTextNode('This is the 
+                              label for checkbox.')); 
+              
+            // appending the checkbox 
+            // and label to div 
+            myDiv.appendChild(checkbox); 
+            myDiv.appendChild(label); 
+        } 
+            */
+            var myDiv = document.getElementById("myDiv");
+
+            var checkbox = document.createElement('input'); 
+              
+            checkbox.type = "checkbox"; 
+            checkbox.name = "name"; 
+            checkbox.value = "value"; 
+            checkbox.id = "id"; 
+
+            myDiv.appendChild(checkbox); 
+
+            
+		} 
+		</script> 
+	</body> 
+</html> 
