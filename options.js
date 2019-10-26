@@ -83,33 +83,33 @@ document.getElementById('removeURL').addEventListener('click',removeURL);
 
 
 
-// global array for todo list 
-var tasksList = []; 
+// global array for todo list
+var tasksList = [];
 var descriptions = []; // MAYBE
-var completedTasksList = []; 
+var completedTasksList = [];
 
 var el = document.getElementById("submitter");
 if(el){
   el.addEventListener("click", addToDoList);
 }
 
-var list_iterator = 0; 
+var list_iterator = 0;
 function addToDoList(){
-    the_task = [] 
+    the_task = []
     var ul = document.getElementById("list_tasks");
     var input = document.getElementById("userInput");
     var li = document.createElement("li");
 
-    var checkbox = document.createElement("input"); 
-    checkbox.type = "checkbox"; 
-    checkbox.setAttribute('id',list_iterator); 
-    list_iterator = list_iterator+1; 
+    var checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.setAttribute('id',list_iterator);
+    list_iterator = list_iterator+1;
 
-    li.setAttribute('id',input.value); // need to grab this later 
+    li.setAttribute('id',input.value); // need to grab this later
     li.appendChild(document.createTextNode(input.value));
     li.appendChild(checkbox);
     ul.appendChild(li);
-    
+
     //store array on the cloud
     /*
     chrome.storage.sync.set({toDoList:tasksList}, function() {
@@ -153,7 +153,6 @@ function restoreToDoList(){
   */
 }
 
-// button events 
+// button events
 //document.addEventListener('DOMContentLoaded', restoreToDoList);
 document.getElementById('submitter').addEventListener('click',addToDoList);
-
