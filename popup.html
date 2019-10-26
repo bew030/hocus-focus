@@ -7,69 +7,80 @@
   </head>
   <body>
 
-
+    <!-- Handles the top name and logo elements -->
     <div class="wrapper">
+      <div class="box1" style="text-align: center">
+        <h1>Study Aid</h1>
+      </div>
 
-    <div class="box1" style="text-align: center">
-      <h1>Study Aid</h1>
+      <div class="box2" style="margin-top: 10px; text-align: center">
+        <img src='address_book.png' width="60" height="60"
+        align="center" id='BookIcon'>
+      </div>
     </div>
 
-    <div class="box2" style="margin-top: 10px">
-      <img src='address_book.png' width="60" height="60"
-      align="center" id='BookIcon'>
-    </div>
-
-
-
-    <div class="box3" style="text-align: center">
-      <div class="menu">
-        <a href="#" align="left" id="Tab1">Timer</a>
-        <a href="#" id="Tab2">Blacklist</a>
-        <a href="#" id="Tab3">To Do</a>
-      </div>
-      <div id="London" class="tabcontent">
-        <h3>London</h3>
-        <p>London is the capital city of England.</p>
-      </div>
-
-      <div id="Paris" class="tabcontent">
-        <h3>Paris</h3>
-        <p>Paris is the capital of France.</p>
-      </div>
-
-      <div id="Tokyo" class="tabcontent">
-        <h3>Tokyo</h3>
-        <p>Tokyo is the capital of Japan.</p>
-      </div>
+      <!-- Creates line between logo and name and rest of elements -->
       <hr margin: 10px>
-      <!--Class Switch handles the toggle button-->
-    <label class="switch">
-      <input type="checkbox" id="togBtn">
-      <div class="slider round">
-        <!--ADDED HTML, text inside the slider box -->
-        <span class="study on">STOP</span>
-        <span class="study off">START</span>
-        <!--END-->
+      <div class="innerwrapper">
+        <div class="innerbox1" style="text-align: center">
+          <!--Class Switch handles the toggle button-->
+        <label class="switch">
+          <input type="checkbox" id="togBtn">
+          <div class="slider round">
+            <!--ADDED HTML, text inside the slider box -->
+            <span class="study on">STOP</span>
+            <span class="study off">START</span>
+            <!--END-->
+          </div>
+        </label>
       </div>
-    </label>
-  </div>
 
-    <div class="box4">
-      <div style="text-align: center">
-          <h1>
-              <span id="hour">00</span> :
-              <span id="min">00</span> :
-              <span id="sec">00</span>
-          </h1>
+        <div class="innerbox2" style="text-align: center">
+              <h1>
+                  <span id="hour">00</span> :
+                  <span id="min">00</span> :
+                  <span id="sec">00</span>
+              </h1>
+        </div>
+
+        <div class="innerbox3" style="text-align: center">
+          <h3>Total Hours Studied: </h3>
+          <a href="options.html" class="button">Settings</a>
+        </div>
       </div>
-    </div>
 
+<!---
+<div class="tab" style="text-align: center">
+  <button class="tablinks" onclick="openCity(event, 'Timer')">Timer</button>
+  <button class="tablinks" onclick="openCity(event, 'Blacklist')">Blacklist</button>
+  <button class="tablinks" onclick="openCity(event, 'To Do')">To Do</button>
+</div>
+
+
+<div id="Timer" class="tabcontent"></div>
+<div id="Blacklist" class="tabcontent">
+  <h3>Blacklist</h3>
+  <p>oh fuck oh shit</p>
+</div>
+
+<div id="To Do" class="tabcontent">
+  <h3>To Do</h3>
+  <p>fucking fuckerz</p>
+</div>
+
+-->
+
+
+
+<<<<<<< HEAD
     <div class="box5">
       <h3>Time Since Last Study Session:</h3>
       <p id="demo"> this should change</p>
     <button>Settings</button>
     </div>
   </div>
+=======
+>>>>>>> 908b55819a9cc6cb0c1fbd1b0ffd8b7b1af19f81
 
     <script src="popup.js"></script>
 

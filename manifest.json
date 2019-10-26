@@ -11,6 +11,15 @@
     "persistent": false
   },
 
+  "content_scripts": [
+  {
+    "matches": [
+      "<all_urls>"
+    ],
+    "js": ["content.js"]
+  }
+],
+
   "browser_action": {
    "default_icon": "address_book.png",
    "default_popup": "popup.html"
@@ -18,6 +27,7 @@
   "permissions": [
    "activeTab",
    "storage",
-   "webNavigation"
+   "webNavigation",
+   "tabs"
    ]
 }

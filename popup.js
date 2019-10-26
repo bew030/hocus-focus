@@ -162,3 +162,24 @@ document.addEventListener('DOMContentLoaded', function () {
         })();
     }
 });
+
+
+// function to handle scrolling tab bar in popup.html
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  //sets the style of each tab's display individually (text)
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    console.log(tabcontent[i]);
+    // hides the other tabs' content
+    tabcontent[i].style.display = "none";
+  }
+  // sets the tablinks to active
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    // keeps the tab name's highlighted only if it is clicked
+    tablinks[i].className = tablinks[i].className.replace("active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
