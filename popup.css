@@ -6,7 +6,9 @@
   height: 34px;
 }
 
-/* DO NOT DELETE, literally has the whole slider */
+/* DO NOT DELETE anything in .slider, this maintains the circle slider */
+/* This handles the original position of the slider,
+where it is off and to the left */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -19,7 +21,7 @@
   transition: .4s;
 }
 
-/* Creates circular button in middle */
+/* This handles the on position of the slider, when it is to the right */
 .slider:before {
   position: absolute;
   content: "";
@@ -32,14 +34,18 @@
   transition: .4s;
 }
 
+/* This handles the slider's different colors */
+/* This makes it green when it is on */
 input:checked + .slider {
   background-color: #2ab934;
 }
 
+/* This makes it red when it is off */
 input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
+/* This controls how much the slider moves when you click it */
 input:checked + .slider:before {
   -webkit-transform: translateX(55px);
   -ms-transform: translateX(55px);
@@ -47,11 +53,14 @@ input:checked + .slider:before {
 }
 
 /*------ ADDED CSS ---------*/
+
+/* This shows the text when each button is clicked */
 .on
 {
   display: none;
 }
-
+/* Formats the location of the on/off text to be in the middle,
+white, and the font style and size */
 .on, .off
 {
   color: white;
@@ -63,6 +72,7 @@ input:checked + .slider:before {
   font-family: Verdana, sans-serif;
 }
 
+/* Ensures that the correct text is displayed when the button slides */
 input:checked + .slider .on
 {display: block;}
 
@@ -71,7 +81,8 @@ input:checked + .slider .off
 
 /*--------- END --------*/
 
-/* Rounded sliders, makes the overall box round */
+/* Rounded background, makes the overall box where the circle moves around
+in round */
 .slider.round {
   border-radius: 14px;
 }
