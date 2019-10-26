@@ -1,14 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head><title>My Test Extension Options</title></head>
 <h1> Blacklisted Websites: </h1>
 <body>
+  <h1>
+    Blacklist Websites Here
+  </h1>
+  <input type="text" id="input"/>
+  <button id="addURL">add URL</button>
+  <button id="removeURL">remove URL</button>
   <ul id="dynamic-list"></ul>
+  <br>
+  <br>
+  <h1>
+    Create To Do List Here
+  </h1>
+  <input type="text" id="userInput"></input>
+  <button id="submitter">Add Task</button>
+  <div id='unfinished'>
+    <ul id = 'list_tasks'></ul>
+  </div>
+  <div id="finished">
 
-     <input type="text" id="input"/>
-     <button id="addURL">add URL</button>
-     <button id="removeURL">remove URL</button>
+  </div>
 
-<script src="options.js"></script>
+  <script src="options.js"></script>
 </body>
 </html>
