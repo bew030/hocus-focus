@@ -1,30 +1,6 @@
 //global array for storing URLs to block
 var urlarray = [];
 
-// global array for todo list 
-var tasksList = []; 
-var descriptions = []; // MAYBE
-var completedTasksList = []; 
-
-var el = document.getElementById("submitter");
-if(el){
-  el.addEventListener("click", addToDoList);
-  el.addEventListener("click",displayToDoList);
-}
-
-function addToDoList(){
-    var ul = document.getElementById("list_tasks");
-    var input = document.getElementById("userInput");
-    var li = document.createElement("div");
-
-    li.setAttribute('id',input.value); // setting ID attribute
-    li.appendChild(document.createTextNode(input.value));
-    ul.appendChild(li);
-
-    tasksList.push(input.value);
-}
-
-
 //function that adds a URL to blacklist
 function addURL(){
 
@@ -99,11 +75,73 @@ function restoreOptions(){
     }
   });
 }
-
-// button events 
-document.getElementById('submitter').addEventListener('click',addToDoList);
-
 //button events
 document.addEventListener('DOMContentLoaded', restoreOptions);
 document.getElementById('addURL').addEventListener('click',addURL);
 document.getElementById('removeURL').addEventListener('click',removeURL);
+
+
+
+
+// global array for todo list 
+var tasksList = []; 
+var descriptions = []; // MAYBE
+var completedTasksList = []; 
+
+var el = document.getElementById("submitter");
+if(el){
+  el.addEventListener("click", addToDoList);
+  el.addEventListener("click",displayToDoList);
+}
+
+function addToDoList(){
+    the_task = [] 
+    var ul = document.getElementById("list_tasks");
+    var input = document.getElementById("userInput");
+    var li = document.createElement("div");
+
+    var checkbox = document.createElement("input"); 
+    checkbox.type = "checkbox"; 
+    checkbox.setAttribute('id',input.value); 
+
+    li.setAttribute('id',input.value);
+    li.appendChild(document.createTextNode(input.value));
+    li.appendChild(checkbox);
+    ul.appendChild(li);
+    // ul.append(checkbox);
+    
+  
+    
+    //store array on the cloud
+    /*
+    chrome.storage.sync.set({toDoList:tasksList}, function() {
+      console.log(input.value +' was saved');
+    });
+    */
+}
+
+function restoreToDoList(){
+  /*
+  //retrive array from cloud
+  chrome.storage.sync.get({
+    toDoList:[],
+  }, function(items) {
+    tasksList = items.toDoList;
+    //add each element to html list and display
+    for(var i =0; i < tasksList.length; i++){
+      var ul = document.getElementById("list_tasks");
+      var input = tasksList[i];
+      console.log(tasksList);
+      var li = document.createElement("div");
+      li.setAttribute('id',input);
+      li.appendChild(document.createTextNode(input));
+      ul.appendChild(li);
+    }
+  });
+  */
+}
+
+// button events 
+//document.addEventListener('DOMContentLoaded', restoreToDoList);
+document.getElementById('submitter').addEventListener('click',addToDoList);
+
