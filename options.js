@@ -93,6 +93,7 @@ if(el){
   el.addEventListener("click", addToDoList);
 }
 
+var list_iterator = 0; 
 function addToDoList(){
     the_task = [] 
     var ul = document.getElementById("list_tasks");
@@ -101,15 +102,13 @@ function addToDoList(){
 
     var checkbox = document.createElement("input"); 
     checkbox.type = "checkbox"; 
-    checkbox.setAttribute('id',input.value); 
+    checkbox.setAttribute('id',list_iterator); 
+    list_iterator = list_iterator+1; 
 
-    li.setAttribute('id',input.value);
+    li.setAttribute('id',input.value); // need to grab this later 
     li.appendChild(document.createTextNode(input.value));
     li.appendChild(checkbox);
     ul.appendChild(li);
-    // ul.append(checkbox);
-    
-  
     
     //store array on the cloud
     /*
@@ -118,6 +117,20 @@ function addToDoList(){
     });
     */
 }
+
+function removeURL(){
+  //take input on url to remove and create objects
+  var ul = document.getElementById("dynamic-list");
+  var item = document.getElementById(input.value);
+  //remove from html visual
+  ul.removeChild(item);
+
+  //remove URL from array
+  for(var i = 0; i < urlarray.length; i++){
+    if( urlarray[i] === input.value ){
+      urlarray.splice(i,1);
+    }
+  }
 
 function restoreToDoList(){
   /*

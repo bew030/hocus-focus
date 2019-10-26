@@ -35,11 +35,12 @@ function startStop() { /* Toggle StartStop */
 
     function timer() {
         /* Main Timer */
+        sec = sec+1;
         secOut = printTime(sec); // not always equal to sec
         minOut = printTime(min);
         hourOut = printTime(hour);
 
-        sec = sec+1;
+        
 
         if (sec == 60) {
             min = min+1;
@@ -64,15 +65,14 @@ function startStop() { /* Toggle StartStop */
     }
 
     function reset() {
-        var sec = 0;
-        var min = 0;
-        var hour = 0;
+        sec = 0;
+        min = 0;
+        hour = 0;
 
         document.getElementById("sec").innerHTML = printTime(sec);
         document.getElementById("min").innerHTML = printTime(min);
         document.getElementById("hour").innerHTML = printTime(hour);
     }
-
 // function to upload current study session data to the cloud
 function loadData() {
     // declare array with new data
@@ -139,3 +139,4 @@ document.addEventListener('DOMContentLoaded', function () {
         })();
     }
 });
+
