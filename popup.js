@@ -133,9 +133,9 @@ function restoreData() {
 
 function updateTotalDisplay() {
     restoreData();
-    document.getElementById("totalSec").innerHTML = printTime(studyDataArr[2]);
-    document.getElementById("totalMin").innerHTML = printTime(studyDataArr[1]);
-    document.getElementById("totalHour").innerHTML = printTime(studyDataArr[0]);
+    // document.getElementById("totalSec").innerHTML = printTime(studyDataArr[2]);
+    // document.getElementById("totalMin").innerHTML = printTime(studyDataArr[1]);
+    // document.getElementById("totalHour").innerHTML = printTime(studyDataArr[0]);
 }
 
 function clearData() {
