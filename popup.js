@@ -1,31 +1,31 @@
 var x;
-var startstop = 0; // boolean condition for whether button should display start or stop 
+var startstop = 0; // boolean condition for whether button should display start or stop
 
 var el = document.getElementById("togBtn");
 if(el){
     el.addEventListener("click", startStop);
-  // el.addEventListener("click", secondFunction); 
+  // el.addEventListener("click", secondFunction);
 }
 
 
 function startStop() { /* Toggle StartStop */
     startstop = startstop + 1;
     if (startstop === 1) {
-        reset(); 
+        reset();
         start();
-    } 
+    }
     else if (startstop === 2) {
         startstop = 0;
         stop();
     }
 
-    var sec = 1; 
+    var sec = 1;
     var min = 0;
     var hour = 0;
 
-    function printTime(i) { 
-        if (i < 10) { // if condition that adds extra 0 integer if number is singular digit 
-            i = "0" + i; // i would be converted to a string 
+    function printTime(i) {
+        if (i < 10) { // if condition that adds extra 0 integer if number is singular digit
+            i = "0" + i; // i would be converted to a string
         }
     return i;
     }
@@ -61,7 +61,7 @@ function startStop() { /* Toggle StartStop */
     }
 
     function reset() {
-        var sec = 0; 
+        var sec = 0;
         var min = 0;
         var hour = 0;
 
@@ -70,3 +70,17 @@ function startStop() { /* Toggle StartStop */
         document.getElementById("hour").innerHTML = printTime(hour);
     }
 }
+
+// This block enables links from popup.html to open in a new tab
+document.addEventListener('DOMContentLoaded', function () {
+    var links = document.getElementsByTagName("a");
+    for (var i = 0; i < links.length; i++) {
+        (function () {
+            var ln = links[i];
+            var location = ln.href;
+            ln.onclick = function () {
+                chrome.tabs.create({active: true, url: location});
+            };
+        })();
+    }
+});
