@@ -1,4 +1,7 @@
 var x;
+var sec = 1;
+var min = 0;
+var hour = 0;
 var startstop = 0; // boolean condition for whether button should display start or stop
 
 var el = document.getElementById("togBtn");
@@ -18,10 +21,8 @@ function startStop() { /* Toggle StartStop */
         startstop = 0;
         stop();
     }
+}
 
-    var sec = 1;
-    var min = 0;
-    var hour = 0;
 
     function printTime(i) {
         if (i < 10) { // if condition that adds extra 0 integer if number is singular digit
@@ -69,7 +70,7 @@ function startStop() { /* Toggle StartStop */
         document.getElementById("min").innerHTML = printTime(min);
         document.getElementById("hour").innerHTML = printTime(hour);
     }
-}
+
 
 // This block enables links from popup.html to open in a new tab
 document.addEventListener('DOMContentLoaded', function () {
