@@ -4,12 +4,14 @@
   "name": "Study Aid",
   "description": "This extension will help you study",
   "version": "1.0",
+  "options_page": "options.html",
 
   "browser_action": {
    "default_icon": "address_book.png",
    "default_popup": "popup.html"
   },
   "permissions": [
-   "activeTab"
+   "activeTab",
+   "storage"
    ]
 }
