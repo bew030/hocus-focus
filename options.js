@@ -82,6 +82,7 @@ document.getElementById('removeURL').addEventListener('click',removeURL);
 
 
 
+//////////////////////////TODO LIST///////////////////////////////////
 
 // global array for todo list
 var tasksList = [];
@@ -117,20 +118,6 @@ function addToDoList(){
     });
     */
 }
-
-function removeURL(){
-  //take input on url to remove and create objects
-  var ul = document.getElementById("dynamic-list");
-  var item = document.getElementById(input.value);
-  //remove from html visual
-  ul.removeChild(item);
-
-  //remove URL from array
-  for(var i = 0; i < urlarray.length; i++){
-    if( urlarray[i] === input.value ){
-      urlarray.splice(i,1);
-    }
-  }
 
 function restoreToDoList(){
   /*
