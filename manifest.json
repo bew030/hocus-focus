@@ -7,7 +7,7 @@
   "options_page": "options.html",
 
   "browser_action": {
-   "default_icon": "book.png",
+   "default_icon": "address_book.png",
    "default_popup": "popup.html"
   },
   "permissions": [

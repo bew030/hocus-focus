@@ -1,7 +1,7 @@
 var x;
 var startstop = 0; // boolean condition for whether button should display start or stop 
 
-var el = document.getElementById("togBtn");
+var el = document.getElementById("start");
 if(el){
     el.addEventListener("click", startStop);
   // el.addEventListener("click", secondFunction); 
@@ -13,8 +13,10 @@ function startStop() { /* Toggle StartStop */
     if (startstop === 1) {
         reset(); 
         start();
+        document.getElementById("start").innerHTML = "Stop";
     } 
     else if (startstop === 2) {
+        document.getElementById("start").innerHTML = "Start";
         startstop = 0;
         stop();
     }
