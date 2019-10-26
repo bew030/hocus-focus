@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById("checkPage").addEventListener("click", myFunction);
-});
-
-function myFunction(){
-  document.getElementById("demo").innerHTML = "fuck";
+var el = document.getElementById('checkPage');
+if(el){
+  el.addEventListener("click", myFunction);
 }
+function myFunction() {
+    document.getElementById("demo").innerHTML = "Paragraph changed.";
+   }
