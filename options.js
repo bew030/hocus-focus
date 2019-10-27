@@ -7,7 +7,7 @@ function addURL(){
    //take input from textbox and create relevant objects
    var ul = document.getElementById("dynamic-list");
    var input = document.getElementById("input");
-   var li = document.createElement("li");
+   var li = document.createElement("div");
 
     //check array for duplicate URL against input
     var duplicate = false;
@@ -77,7 +77,7 @@ function restoreOptions(){
       var ul = document.getElementById("dynamic-list");
       var input = urlarray[i];
       console.log(urlarray);
-      var li = document.createElement("li");
+      var li = document.createElement("div");
       li.setAttribute('id',input);
       li.appendChild(document.createTextNode(input));
       ul.appendChild(li);
