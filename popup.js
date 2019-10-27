@@ -93,6 +93,10 @@ function displayReset(){
   min = 0;
   hour = 0;
 
+  chrome.storage.sync.get( {aggTime:0}, function(item){
+     updateGlobalTime(item.aggTime);
+  });
+
   chrome.browserAction.setBadgeText({text: '00:00'});
 
   chrome.storage.sync.set({hourCloud:hour});
@@ -289,4 +293,17 @@ function startStop() { /* Toggle StartStop */
       min = Math.floor(temp/60);
       hour = Math.floor(min / 60);
       console.log("REEEEEEE" + sec);
+    }
+
+
+    function updateGlobalTime(seconds){
+      var temp = seconds;
+      seconds = temp % 60;
+      var minutes = Math.floor(temp/60);
+      var hours = Math.floor(minutes / 60);
+      console.log("aggregate" + seconds);
+
+      document.getElementById("totalSec").innerHTML = printTime(seconds);
+      document.getElementById("totalMin").innerHTML = printTime(minutes);
+      document.getElementById("totalHour").innerHTML = printTime(hours);
     }

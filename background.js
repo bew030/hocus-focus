@@ -101,9 +101,9 @@ function startStop() { /* Toggle StartStop */
     }
 }
 
-    var sec = 1;
-    var min = 0;
-    var hour = 0;
+  //  var sec = 1;
+  //  var min = 0;
+  //  var hour = 0;
 
     function printTime(i) {
         if (i < 10) { // if condition that adds extra 0 integer if number is singular digit
@@ -164,7 +164,18 @@ function startStop() { /* Toggle StartStop */
         sec = 0;
         min = 0;
         hour = 0;
+        var temp = timeRun;
         timeRun = 0;
+
+        console.log("resetting!")
+        chrome.storage.sync.get( {aggTime:0}, function(item){
+          console.log(item.aggTime);
+          //temp = temp + item.aggTime;
+
+          chrome.storage.sync.set({aggTime:(temp+item.aggTime)})
+        });
+
+        //chrome.storage.sync.set({aggTime:temp});
 
 
         chrome.storage.sync.set({hourCloud:hour});
