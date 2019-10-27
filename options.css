@@ -1,10 +1,15 @@
-body {
+/* Handles the background color and padding relative to entire browser page */
+html, body {
+  padding: 0;
+  margin: 0;
   background: rgb(96,47,47);
   background: linear-gradient(45deg, rgba(96,47,47,0.2) 0%, rgba(218,228,227,0.4) 0%, rgba(193,239,252,0.5) 100%);
   min-height: 100%;
+  min-width: 100%;
+  overflow: auto;
 }
 
-
+/* Handles the grid specifications for the wrapper class */
 .wrapper {
 display: grid;
 grid-template-columns: repeat(5, 1fr);
@@ -16,15 +21,15 @@ height: 100vh;
 position: absolute
 }
 
-
+/*NOTE: All right margins in div1 are +3 because of right border */
 .div1 { /* left navbar side */
   grid-area: 1 / 1 / 5 / 2;
-  border-right: 3px solid gray;
+  border-right: 3px solid white;
   background-color: #ceebf4
 }
 .div2 { /* left middle */
   grid-area: 1 / 2 / 3 / 4;
-  border-right: 3px solid gray;
+  border-right: 3px solid white;
   overflow: auto;
 }
 .div3 { /* right middle */
@@ -33,17 +38,19 @@ position: absolute
 }
 .div4 { /* bottom */
   grid-area: 3 / 2 / 5 / 6;
-  border-top: 3px solid gray;
+  border-top: 3px solid white;
 }
 
+
+/* Handles position of icon bar */
 .icon-bar {
-  position: absolute;
-  top: 625px;
-  left: 5%;
-  bottom: 42px;
+  position: relative;
+  margin-top: 30%;
+  margin-right: 5%;
+  margin-bottom: 3%;
 }
 
-/* Style the icon bar links */
+/* Styles the icon bar links */
 .icon-bar a {
   /*display: block;*/
   text-align: center;
@@ -73,3 +80,36 @@ position: absolute
 a:hover {
   color: blue;
 }
+
+/* Styles the hr line above "version" */
+hr {
+  margin-left: 40px;
+  margin-right: 55px;
+  border-color: black;
+  border-top: 3px;
+}
+
+/*
+html,
+body,
+header,
+.view {
+  height: 100%;
+}
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 1000px;
+  }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 600px;
+  }
+}*/

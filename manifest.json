@@ -20,7 +20,10 @@
   }
 ],
 
-  "icons": {"48": "address_book.png"},
+  "icons": {
+    "16": "address_book.png",
+    "48": "address_book.png",
+    "128": "address_book.png"},
 
   "browser_action": {
    "default_icon": "address_book.png",
