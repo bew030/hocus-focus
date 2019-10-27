@@ -134,6 +134,8 @@ function startStop() { /* Toggle StartStop */
 
         console.log(time_string);
 
+        chrome.storage.sync.set({})
+
       //  document.getElementById("sec").innerHTML = secOut;
       //  document.getElementById("min").innerHTML = minOut;
       //  document.getElementById("hour").innerHTML = hourOut;
