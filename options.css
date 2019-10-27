@@ -19,19 +19,22 @@ position: absolute
 
 .div1 { /* left navbar side */
   grid-area: 1 / 1 / 5 / 2;
-  border-right: 3px solid white;
+  border-right: 3px solid gray;
   background-color: #ceebf4
 }
 .div2 { /* left middle */
   grid-area: 1 / 2 / 3 / 4;
+  border-right: 3px solid gray;
   overflow: auto;
 }
 .div3 { /* right middle */
   grid-area: 1 / 4 / 3 / 6;
   overflow: auto;
 }
-.div4 { grid-area: 3 / 2 / 5 / 6;
-} /* bottom */
+.div4 { /* bottom */
+  grid-area: 3 / 2 / 5 / 6;
+  border-top: 3px solid gray;
+}
 
 .icon-bar {
   position: absolute;
