@@ -107,51 +107,60 @@ if(el){
 
 // FUNCTIONS
 function addToDoList() { 
-    var ul = document.getElementById('list_tasks'); 
-    var input = document.getElementById("userInput");
+  var ul = document.getElementById('list_tasks'); 
+  var input = document.getElementById("userInput");
 
-    var li = document.createElement("div");
-    // li.setAttribute('id','li'+id_iterator);  
+  var li = document.createElement("tr");
+  li.setAttribute('id','tr'+id_iterator);  
+  
+  var col_1 = document.createElement("th"); 
+  col_1.setAttribute('id', 'col1'+id_iterator);
+  col_1.appendChild(document.createTextNode(input.value));
 
-    var checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.setAttribute('id', String(id_iterator));
+  var col_2 = document.createElement("th"); 
+  var checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.setAttribute('id', String(id_iterator)); // double check 
+  col_2.appendChild(checkbox);
 
-    id_iterator = id_iterator + 1;
+  id_iterator = id_iterator + 1;
 
-    li.appendChild(document.createTextNode(input.value));
-    li.appendChild(checkbox);
-    ul.appendChild(li);   
+  li.appendChild(col_1);
+  li.appendChild(col_2);
+  ul.appendChild(li);   
 
-    var lis = document.getElementById('list_tasks').getElementsByTagName('input');
-    
-    list_ids = []; 
-    for (var i = 0; i < lis.length; i++) {
-        list_ids.push(lis[i].id)
-    }
-
-    for (var i = 0; i < list_ids.length; i++) {
-        document.getElementById(list_ids[i]).addEventListener('click',checkboxAction);
-    }
-}
-
-function checkboxAction() {
-    var checkBox = this;
-    var finishList = document.getElementById('finish_list');
-    var soundCondition = document.getElementById('soundOption').checked;
-    if (soundCondition == false ){
-      var random_option = Math.floor(Math.random() * array_possible_audio.length); 
-      var audio = new Audio(array_possible_audio[random_option]);
-      audio.play();
-    }
-
-    if (checkBox.checked == true){
-        var li = document.createElement("div");
-        var element = checkBox.parentNode;
-        var text = element.innerText;
-        li.append(text); 
-        finishList.append(li);
-        element.parentNode.removeChild(element);
-    } 
+  
+  var lis = document.getElementById('list_tasks').getElementsByTagName('input');
+  
+  list_ids = []; 
+  for (var i = 0; i < lis.length; i++) {
+      list_ids.push(lis[i].id)
   }
 
+  for (var i = 0; i < list_ids.length; i++) {
+      document.getElementById(list_ids[i]).addEventListener('click',checkboxAction);
+  }
+
+}
+
+
+function checkboxAction() {
+  var checkBox = this;
+  var finishList = document.getElementById('finish_list');
+  var soundCondition = document.getElementById('soundOption').checked;
+  if (soundCondition == true){
+    var random_option = Math.floor(Math.random() * array_possible_audio.length); 
+    var audio = new Audio(array_possible_audio[random_option]);
+    audio.play();
+  }
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+      
+      var li = document.createElement("div");
+      var text = checkBox.id;
+      var element = document.getElementById('tr'+text);
+      li.append(document.getElementById('col1'+text).innerText); 
+      finishList.append(li);
+      element.parentNode.removeChild(element);
+  } 
+}
