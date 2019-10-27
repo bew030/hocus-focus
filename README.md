@@ -1,4 +1,4 @@
-# Overview
+# Overview <img src="https://github.com/bew030/hocus-focus/blob/master/extension_images/Wand.png" align="right" height="45"><img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_photos/000/551/956/datas/full_width.png" align="right" height="45">
 _Created by Sebastian Dogaru ([sdogaru@ucsd.edu](sdogaru@ucsd.edu)), Bernard Wong ([bew030@ucsd.edu](bew030@ucsd.edu)), and Neil Tengbumroong ([ntengbum@ucsd.edu](ntengbum@ucsd.edu))_
 
 Hocus Focus is a Google Chrome extension project we made during the SD Hacks 2019 Annual Hackathon. We chose to create something that would help students and wanted to learn more about web applications and extensions, which led us to the idea of creating a study tool that would be easily accessible and minimal at the same time. No one on our team had any previous experience coding with JavaScript, and very limited knowledge of web APIs, HTML, and CSS. The overall coding time was about 36 hours and we are aiming to add this extension to the Chrome marketplace.
@@ -11,3 +11,9 @@ Primary features of Hocus Focus that improve productivity include:
 - __A Performance Stopwatch__: A timer that logs amount of time studied and aggregates this study, activated by a switch that will also prevent the user from accessing time-wasting sites
 
 We'd like to give a big thank you to SD Hacks and all the sponsors for giving us this amazing opportunity. Please feel free to download and try the extension and if you have any feedback, issues or questions feel free to leave an issue or reach out to any of us by email. 
+
+# Badges 
+[![GitHub issues](https://img.shields.io/github/issues/bew030/hocus-focus?color=purple)](https://github.com/bew030/hocus-focus/issues)
+[![GitHub forks](https://img.shields.io/github/forks/bew030/hocus-focus?color=orange)](https://github.com/bew030/hocus-focus/network)
+[![GitHub stars](https://img.shields.io/github/stars/bew030/hocus-focus)](https://github.com/bew030/hocus-focus/stargazers)
+[![HitCount](http://hits.dwyl.io/bew030/hocus-focus.svg)](http://hits.dwyl.io/bew030/hocus-focus)
