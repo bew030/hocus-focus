@@ -21,6 +21,7 @@ var switchOn = chrome.storage.sync.get({
   el.checked = switchOn;
   console.log(switchOn);
   displayTimer();
+  setTimeout(updateGlobalTime,150);
 });
 
 
@@ -305,5 +306,5 @@ function startStop() { /* Toggle StartStop */
         document.getElementById("totalMin").innerHTML = printTime(minutes);
         document.getElementById("totalHour").innerHTML = printTime(hours);
 
-      },300);
+      },50);
     }
