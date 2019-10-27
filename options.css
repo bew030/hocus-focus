@@ -21,7 +21,6 @@ height: 100vh;
 position: absolute
 }
 
-/*NOTE: All right margins in div1 are +3 because of right border */
 .div1 { /* left navbar side */
   grid-area: 1 / 1 / 5 / 2;
   border-right: 3px solid white;
@@ -41,6 +40,10 @@ position: absolute
   border-top: 3px solid white;
 }
 
+.table {
+	display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+}
 
 /* Handles position of icon bar */
 .icon-bar {
