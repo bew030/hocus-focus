@@ -32,6 +32,9 @@ function addURL(){
            console.log(input.value +' was saved');
          });
     }
+    //update background array
+    chrome.runtime.getBackgroundPage(function(bgWindow) {
+       bgWindow.primeURLarray();});
 }
 
 //remove a URL from the blacklist, if it exists
@@ -54,13 +57,19 @@ function removeURL(){
     chrome.storage.sync.set({blockList:urlarray}, function() {
          console.log('array updated after element removal');
        });
+
+   //update background array
+   chrome.runtime.getBackgroundPage(function(bgWindow) {
+          bgWindow.primeURLarray(bgWindow.primeURLarray2)});
 }
 
 //restore the state of options page as user left it on previous use
 function restoreOptions(){
   //retrive array from cloud
   chrome.storage.sync.get({
-    blockList:["reddit.com"],
+    blockList:[ "youtube.com", "reddit.com",
+    "twitter.com","instagram.com","facebook.com",
+    "twitch.tv", "netflix.com", "hulu.com"],
   }, function(items) {
     urlarray = items.blockList;
     //add each element to html list and display
