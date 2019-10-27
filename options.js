@@ -214,7 +214,7 @@ function checkboxAction() {
   var soundCondition = document.getElementById('soundOption').checked;
   if (soundCondition == true){
     var random_option = Math.floor(Math.random() * array_possible_audio.length);
-    var audio = new Audio(array_possible_audio[random_option]);
+    var audio = new Audio('audiofiles/'+array_possible_audio[random_option]);
     audio.play();
   }
   // If the checkbox is checked, display the output text

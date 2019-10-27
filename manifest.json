@@ -11,22 +11,13 @@
     "persistent": false
   },
 
-  "content_scripts": [
-  {
-    "matches": [
-      "<all_urls>"
-    ],
-    "js": ["content.js"]
-  }
-],
-
   "icons": {
-    "16": "Wand.png",
-    "48": "Wand.png",
-    "128": "Wand.png"},
+    "16": "extension_images/Wand.png",
+    "48": "extension_images/Wand.png",
+    "128": "extension_images/Wand.png"},
 
   "browser_action": {
-   "default_icon": "Wand.png",
+   "default_icon": "extension_images/Wand.png",
    "default_popup": "popup.html"
   },
   "permissions": [
