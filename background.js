@@ -2,6 +2,7 @@ var objarray = [{urlContains: "youtube.com"}, {urlContains: "reddit.com"},
 {urlContains: "twitter.com"},{urlContains: "instagram.com"},{urlContains: "facebook.com"},
 {urlContains: "twitch.tv"}, {urlContains: "netflix.com"}, {urlContains: "hulu.com"}];
 var urlarray = [];
+var switchOn = false;
 
 
 //work to be done when extension is installed
@@ -9,11 +10,13 @@ var urlarray = [];
 chrome.runtime.onInstalled.addListener();
 
 function listenURLs(){
+  switchOn = true;
   chrome.webNavigation.onBeforeNavigate.addListener(blockWebsite,
     {url: objarray});
 }
 
 function stopListening(){
+  switchOn = false;
     chrome.webNavigation.onBeforeNavigate.removeListener(blockWebsite);
 }
 
@@ -58,7 +61,8 @@ function primeURLarray2(){
   console.log("new object array");
   console.log(objarray);
 
+  if(switchOn){
   chrome.webNavigation.onBeforeNavigate.addListener(blockWebsite,
     {url: objarray});
-
+  }
 }

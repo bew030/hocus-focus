@@ -34,7 +34,7 @@ function addURL(){
     }
     //update background array
     chrome.runtime.getBackgroundPage(function(bgWindow) {
-       bgWindow.primeURLarray();});
+           bgWindow.primeURLarray(bgWindow.primeURLarray2)});
 }
 
 //remove a URL from the blacklist, if it exists
@@ -129,7 +129,7 @@ function addToDoList(){
 }
 
 function check_if_checkbox_checked() {
-  if (document.getElementById('xxx').checked) 
+  if (document.getElementById('xxx').checked)
   {
       document.getElementById('totalCost').value = 10;
   } else {
