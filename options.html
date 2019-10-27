@@ -48,28 +48,33 @@
           <input type="text" id="input"/>
           <button id="addURL">add URL</button>
           <button id="removeURL">remove URL</button>
+          <br>
+          <i>These websites have been added by default: remove as necessary</i>
           <ul id="dynamic-list" style="margin-right: 40px"></ul>
         </div>
       </div>
 
       <!-- Handles the to do list in its location -->
+
       <div class = 'div3'>
           <div class="To Do List" style="text-align: center">
               <h1>Create To Do List Here</h1>
                   <input type="text" id="userInput"></input>
                   <button id="submitter">Add Task</button>
-                  Disable sound?<input type = 'checkbox' id='soundOption' checked></input>
+                  Enable sound?<input type = 'checkbox' id='soundOption'></input>
                   <div id = 'unfinished'>
                       <h2>TO DO: </h2>
-                      <ul id = "list_tasks"></ul>
+                      <table id = "list_tasks" align = 'center'></table>
+                      <!-- <ul id = "list_tasks"></ul> -->
                   </div>
 
                   <div id = 'complete'>
                       <h2>COMPLETE: </h2>
                       <ul id = "finish_list"></ul>
+                      <!-- <ul id = "finish_list"></ul> -->
                   </div>
           </div>
-      </div>
+        </div>
 
       <div class="div4">
         <div class="extrastuff">

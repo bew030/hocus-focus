@@ -100,9 +100,9 @@ function startStop() { /* Toggle StartStop */
     }
 }
 
-    var sec = 1;
-    var min = 0;
-    var hour = 0;
+  //  var sec = 1;
+  //  var min = 0;
+  //  var hour = 0;
 
     function printTime(i) {
         if (i < 10) { // if condition that adds extra 0 integer if number is singular digit
@@ -114,11 +114,11 @@ function startStop() { /* Toggle StartStop */
     function timer() {
         /* Main Timer */
 
-        secOut = printTime(sec); 
+        secOut = printTime(sec);
         minOut = printTime(min);
         hourOut = printTime(hour);
         sec = sec+1;
-        
+
         if (sec == 60) {
           min = min+1;
           sec = 0;
@@ -132,7 +132,7 @@ function startStop() { /* Toggle StartStop */
 
 
 
-        
+
 
         var time_string = String(minOut)+":"+String(secOut);
         chrome.browserAction.setBadgeText({text: time_string});
@@ -168,7 +168,18 @@ function startStop() { /* Toggle StartStop */
         sec = 0;
         min = 0;
         hour = 0;
+        var temp = timeRun;
         timeRun = 0;
+
+        console.log("resetting!")
+        chrome.storage.sync.get( {aggTime:0}, function(item){
+          console.log("CURRENT" + (item.aggTime + temp));
+          //temp = temp + item.aggTime;
+
+          chrome.storage.sync.set({aggTime:(temp+item.aggTime)})
+        });
+
+        //chrome.storage.sync.set({aggTime:temp});
 
 
         chrome.storage.sync.set({hourCloud:hour});

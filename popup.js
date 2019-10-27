@@ -39,6 +39,12 @@ function updateSwitch(){
 
     chrome.runtime.getBackgroundPage(function(bgWindow){
       bgWindow.stop()});
+
+      setTimeout(updateGlobalTime,300);
+
+      //chrome.storage.sync.get( {aggTime:0}, function(item){
+      //   updateGlobalTime(item.aggTime);
+      //});
   }
   else{
     switchOn = true;
@@ -69,7 +75,7 @@ function displayTimer(){
       chrome.storage.sync.get(function(result){
       sec = result.totalTime+1; // add a second to account for delay in pulling time from background.js
       convertFromSeconds();
-      console.log("GET SECONDS RETURNED" + sec);
+      //console.log("GET SECONDS RETURNED" + sec);
     })
 
   },500)
@@ -92,6 +98,11 @@ function displayReset(){
   sec = 0;
   min = 0;
   hour = 0;
+
+  //chrome.storage.sync.get( {aggTime:0}, function(item){
+  //   updateGlobalTime(item.aggTime);
+  //});
+  //updateGlobalTime();
 
   chrome.browserAction.setBadgeText({text: '00:00'});
 
@@ -261,6 +272,8 @@ function startStop() { /* Toggle StartStop */
         min = 0;
         hour = 0;
 
+        console.log("IN RESET IN RESET");
+
         document.getElementById("sec").innerHTML = printTime(sec);
         document.getElementById("min").innerHTML = printTime(min);
         document.getElementById("hour").innerHTML = printTime(hour);
@@ -273,4 +286,24 @@ function startStop() { /* Toggle StartStop */
       min = Math.floor(temp/60);
       hour = Math.floor(min / 60);
       console.log("REEEEEEE" + sec);
+    }
+
+
+    function updateGlobalTime(){
+      var temp = 0;
+
+      chrome.storage.sync.get( {aggTime:0}, function(item){
+         temp = item.aggTime;});
+         console.log("GLOBAL: "+temp);
+      setTimeout(function(){
+        seconds = temp % 60;
+        var minutes = Math.floor(temp/60);
+        var hours = Math.floor(minutes / 60);
+
+        console.log("seconds: "+ seconds + "minutes: "+minutes);
+        document.getElementById("totalSec").innerHTML = printTime(seconds);
+        document.getElementById("totalMin").innerHTML = printTime(minutes);
+        document.getElementById("totalHour").innerHTML = printTime(hours);
+
+      },300);
     }
