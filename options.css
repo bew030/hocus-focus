@@ -45,19 +45,18 @@ position: absolute
 /* Handles position of icon bar */
 .icon-bar {
   position: relative;
-  margin-top: 30%;
-  margin-right: 5%;
-  margin-bottom: 3%;
+  margin-left: 40%;
+  margin-right: 40%;
 }
 
 /* Styles the icon bar links */
 .icon-bar a {
-  /*display: block;*/
+  display: inline-block;
   text-align: center;
   padding: 10px;
   transition: all 0.3s ease;
-  color: white;
-  font-size: 20px;
+  color: black;
+  font-size: 25px;
 }
 
 /* Style the social media icons with color, if you want */
@@ -83,33 +82,19 @@ a:hover {
 
 /* Styles the hr line above "version" */
 hr {
-  margin-left: 40px;
-  margin-right: 55px;
+  margin-left: 40%;
+  margin-right: 40%;
   border-color: black;
   border-top: 3px;
 }
 
-/*
-html,
-body,
-header,
-.view {
-  height: 100%;
+.extrastuff {
+  margin-top: 20%;
+  text-align: center;
 }
 
-@media (max-width: 740px) {
-  html,
-  body,
-  header,
-  .view {
-    height: 1000px;
-  }
-}
-@media (min-width: 800px) and (max-width: 850px) {
-  html,
-  body,
-  header,
-  .view {
-    height: 600px;
-  }
+/*
+.photo {
+  max-height: 100%;
+  max-width: 100%;
 }*/
