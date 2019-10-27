@@ -1,7 +1,11 @@
+//declare global variables such as default blacklist
 var objarray = [{urlContains: "youtube.com"}, {urlContains: "reddit.com"},
 {urlContains: "twitter.com"},{urlContains: "instagram.com"},{urlContains: "facebook.com"},
 {urlContains: "twitch.tv"}, {urlContains: "netflix.com"}, {urlContains: "hulu.com"}];
 var urlarray = [];
+
+//check status of ON/OFF switch and determine whether or not to monitor
+//URLS
 var switchOn = chrome.storage.sync.get({
   switchStatus:false,
 }, function(items) {
@@ -14,65 +18,56 @@ var switchOn = chrome.storage.sync.get({
 //document.addEventListener('DOMContentLoaded', primeURLarray(primeURLarray2()));
 chrome.runtime.onInstalled.addListener();
 
+//function that starts the process of monitoring urls
 function listenURLs(){
   chrome.webNavigation.onBeforeNavigate.addListener(blockWebsite,
     {url: objarray});
-    console.log("ListenURL Called!");
     switchOn = true;
 }
 
+//function that ends process of monitoring urls
 function stopListening(){
     chrome.webNavigation.onBeforeNavigate.removeListener(blockWebsite);
-  console.log("Stop listening called!");
   switchOn = false;
 }
 
+
+//action of preventing the user from accessing a blacklisted website during studymode
 function blockWebsite(callback){
-  console.log("Blocking website!");
     chrome.tabs.query({active: true, currentWindow:true}, function(tabs)
-{chrome.tabs.remove(tabs[0].id, function() { console.log("blocked " + tabs[0].url);
+{chrome.tabs.remove(tabs[0].id, function() {
 });
 });
 
-console.log("object array in blockwebsite" + objarray);
 }
 
+//update local list of blacklisted Websites
+//removes then readds listeners during this process
 function primeURLarray(callback){
-
   if(switchOn){
-    console.log("Background: Listener turned off!");
     chrome.webNavigation.onBeforeNavigate.removeListener(blockWebsite);
   }
   chrome.storage.sync.get({
     blockList:[ "youtube.com", "reddit.com",
     "twitter.com","instagram.com","facebook.com",
     "twitch.tv", "netflix.com", "hulu.com"],
-  }, function(result) { console.log("blockList type " +typeof(result.blockList));
+  }, function(result) {
     urlarray = result;
     urlarray = urlarray.blockList;
   });
   setTimeout(callback, 500);
 }
 
-//function updateListener(){
-//  chrome.webNavigation.onBeforeNavigate.removeListener(blockWebsite);
-//  chrome.webNavigation.onBeforeNavigate.addListener(blockWebsite,
-//    {url: objarray});
-//}
-
+//helper method that accompanies primeURLarray
+//creates the specifier:URL format that the Chrome API needs
 function primeURLarray2(){
-  console.log("cleared object array")
   objarray = [];
   for(var i = 0; i < urlarray.length; i++){
     var tempObj = {urlContains: urlarray[i]};
-    //console.log("adding" + urlarray[i]);
     objarray.push(tempObj);
   }
-  //console.log("new object array");
-  console.log(objarray);
 
   if(switchOn){
-    console.log("Background: Listener back on!");
   chrome.webNavigation.onBeforeNavigate.addListener(blockWebsite,
     {url: objarray});
   }
@@ -85,7 +80,7 @@ var min = 0;
 var hour = 0;
 var startstop = 0; // boolean condition for whether button should display start or stop
 var studyDataArr = [0, 0, 0]; //global array for total study data
-var timeRun = 0;
+var timeRun = 0;  //total time stopwatch has been running in seconds
 
 function startStop() { /* Toggle StartStop */
     startstop = startstop + 1;
@@ -111,6 +106,7 @@ function startStop() { /* Toggle StartStop */
     return i;
     }
 
+    //background timer driver
     function timer() {
         /* Main Timer */
 
@@ -128,42 +124,24 @@ function startStop() { /* Toggle StartStop */
           hour = hour+1;
       }
 
-
-
-
-
-
-
         var time_string = String(minOut)+":"+String(secOut);
         chrome.browserAction.setBadgeText({text: time_string});
 
         timeRun = timeRun + 1;
-        console.log(timeRun);
-
-
-       //total variables
-
-        //each time variables
-
-      //  document.getElementById("sec").innerHTML = secOut;
-      //  document.getElementById("min").innerHTML = minOut;
-      //  document.getElementById("hour").innerHTML = hourOut;
     }
 
+    //starts timing process
     function start() {
         x = setInterval(timer, 1000);
-
-        //when timer is running listen for events
-        console.log("Start : " + switchOn);
     }
 
+    //stops timing process
     function stop() {
         clearInterval(x);
         reset();
-
-        console.log("Stop :" + switchOn);
     }
 
+    //resets variables to 0 and updates aggregated time tracker in cloud
     function reset() {
         sec = 0;
         min = 0;
@@ -171,27 +149,13 @@ function startStop() { /* Toggle StartStop */
         var temp = timeRun;
         timeRun = 0;
 
-        console.log("resetting!")
+        //add all aggregated time + timeRun and restore to cloud
         chrome.storage.sync.get( {aggTime:0}, function(item){
-          console.log("CURRENT" + (item.aggTime + temp));
-          //temp = temp + item.aggTime;
-
           chrome.storage.sync.set({aggTime:(temp+item.aggTime)})
         });
-
-        //chrome.storage.sync.set({aggTime:temp});
-
-
-        chrome.storage.sync.set({hourCloud:hour});
-        chrome.storage.sync.set({minCloud:min});
-        chrome.storage.sync.set({secCloud:sec});
-
-    //    document.getElementById("sec").innerHTML = printTime(sec);
-    //    document.getElementById("min").innerHTML = printTime(min);
-    //    document.getElementById("hour").innerHTML = printTime(hour);
     }
 
+    //returns total # of seconds timer has run
     function getSeconds(){
-      console.log("Returning :" + timeRun);
       chrome.storage.sync.set({totalTime:timeRun});
     }

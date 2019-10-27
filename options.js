@@ -93,9 +93,8 @@ document.getElementById('removeURL').addEventListener('click',removeURL);
 
 //////////////////////////TODO LIST///////////////////////////////////
 
-
+// todo list global variables
 var array_possible_audio = ["Travis Scott It's Lit.mp3","Travis Scott Straight Up Two.mp3","Travis Scott Straight Up.mp3","wow.mp3","bell.mp3","applause8.mp3"];
-
 var id_iterator = 0
 var list_ids;
 
@@ -106,17 +105,20 @@ if(el){
 }
 
 var array_tasks = [];
-// FUNCTIONS
+
+// adds tasks to todolist and also adds to cloud to allow for memory in extension
 function addToDoList() {
   var ul = document.getElementById('list_tasks');
   var input = document.getElementById("userInput");
 
+  //loop through array to avoid duplicate insertion
   var duplicate = false;
   for(var i = 0; i < array_tasks.length; i++){
     if( array_tasks[i] === input.value ){
       duplicate = true;
     }
   }
+  //if not duplicate add new task to options.html
   if(!duplicate){
     var li = document.createElement("tr");
     li.setAttribute('id','tr'+id_iterator);
@@ -139,7 +141,6 @@ function addToDoList() {
     li.appendChild(col_2);
     ul.appendChild(li);
 
-
     var lis = document.getElementById('list_tasks').getElementsByTagName('input');
 
     list_ids = [];
@@ -157,6 +158,8 @@ function addToDoList() {
     chrome.storage.sync.set({todoTable:array_tasks});
 }
 
+//function to be called when options.html first loads
+// retrieves tasks from cloud and reupdates options.html
 function restoreTODO(){
   chrome.storage.sync.get({
     todoTable:[],
@@ -165,6 +168,7 @@ function restoreTODO(){
     console.log(array_tasks);
 
 
+    //perform reinsertion into html file for each task in array
     for(var k = 0; k < array_tasks.length; k++){
       console.log("IN LOOP");
       var ul = document.getElementById('list_tasks');
@@ -207,8 +211,10 @@ function restoreTODO(){
 
 document.addEventListener('DOMContentLoaded', restoreTODO);
 
-
+//moves task from uncompleted to completed section upon checkbox clicks
+//also removes from array since task is outdated
 function checkboxAction() {
+  //sound effect accompanying action
   var checkBox = this;
   var finishList = document.getElementById('finish_list');
   var soundCondition = document.getElementById('soundOption').checked;
@@ -217,9 +223,11 @@ function checkboxAction() {
     var audio = new Audio('audiofiles/'+array_possible_audio[random_option]);
     audio.play();
   }
+
   // If the checkbox is checked, display the output text
   if (checkBox.checked == true){
 
+      //physical removal and addition across sections
       var li = document.createElement("div");
       var text = checkBox.id;
       var element = document.getElementById('tr'+text);
@@ -230,15 +238,15 @@ function checkboxAction() {
 
       console.log("String: "+str);
 
+      //find outdated task in array and remove
       for(var k =0; k < array_tasks.length; k++){
         if(array_tasks[k] === str){
-          console.log("MATCH");
           array_tasks.splice(k,1);
         }
       }
 
+      //reupload updated array to cloud
       chrome.storage.sync.set({todoTable:array_tasks}, function(){
-        console.log("PUSHED 2 CLUDDD");
       })
   }
 }

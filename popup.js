@@ -5,15 +5,17 @@ var hour = 0;
 var startstop = 0; // boolean condition for whether button should display start or stop
 var studyDataArr = [0, 0, 0]; //global array for total study data
 
-//document.addEventListener('DOMContentLoaded', displayTimer);
+
 var el = document.getElementById("togBtn");
 
+//add listener for clear time spent studying button
 var clearBtn = document.getElementById("clear_button");
 clearBtn.addEventListener("click",function(){
   chrome.storage.sync.set({aggTime:0},function(){});
   setTimeout(updateGlobalTime,200);
 });
 
+//listener for study switch
 if(el){
     el.addEventListener("click", updateSwitch);
 }
@@ -25,7 +27,6 @@ var switchOn = chrome.storage.sync.get({
 }, function(items) {
   switchOn = items.switchStatus;
   el.checked = switchOn;
-  console.log(switchOn);
   displayTimer();
   setTimeout(updateGlobalTime,150);
 });
@@ -33,13 +34,10 @@ var switchOn = chrome.storage.sync.get({
 
 //updates value of switch and invoked background methods
 function updateSwitch(){
-  console.log("Changing value!");
   if(switchOn){
     switchOn = false;
     displayReset();
-    chrome.storage.sync.set({switchStatus:switchOn}, function() {
-                console.log('Stored'+switchOn+'in cloud');
-              });
+    chrome.storage.sync.set({switchStatus:switchOn}, function() {});
 
     chrome.runtime.getBackgroundPage(function(bgWindow) {
            bgWindow.stopListening()});
@@ -58,23 +56,22 @@ function updateSwitch(){
     freshDisplayTimer();
     chrome.runtime.getBackgroundPage(function(bgWindow) {
            bgWindow.listenURLs()});
-    chrome.storage.sync.set({switchStatus:switchOn}, function() {
-                console.log('Stored'+switchOn+'in cloud');
-              });
+    chrome.storage.sync.set({switchStatus:switchOn}, function() {});
 
    chrome.runtime.getBackgroundPage(function(bgWindow){
                 bgWindow.start()});
   }
 }
 
+//function to display timer for the first time (requires reset to 0)
 function freshDisplayTimer(){
   displayReset();
   start();
 }
 
-
+//function to display timer,
 function displayTimer(){
-  console.log("In display timer");
+  //if switch is on, get timer data from background process and update html popout
   if(switchOn){
     chrome.runtime.getBackgroundPage(function(bgWindow){
                  bgWindow.getSeconds()});
@@ -82,17 +79,17 @@ function displayTimer(){
       chrome.storage.sync.get(function(result){
       sec = result.totalTime+1; // add a second to account for delay in pulling time from background.js
       convertFromSeconds();
-      //console.log("GET SECONDS RETURNED" + sec);
     })
-
   },500)
     setTimeout(start, 500);
   }
+  //if switch is off just reset and display clean
   else{
     displayReset();
 }
 }
 
+//helper function for string concatenation and formatting
 function printTime(i) {
     if (i < 10) { // if condition that adds extra 0 integer if number is singular digit
         i = "0" + i; // i would be converted to a string
@@ -100,81 +97,18 @@ function printTime(i) {
 return i;
 }
 
+//funciton that stops timer, resets variables to 0 and updates html
 function displayReset(){
   stop();
   sec = 0;
   min = 0;
   hour = 0;
 
-  //chrome.storage.sync.get( {aggTime:0}, function(item){
-  //   updateGlobalTime(item.aggTime);
-  //});
-  //updateGlobalTime();
-
   chrome.browserAction.setBadgeText({text: '00:00'});
-
-  chrome.storage.sync.set({hourCloud:hour});
-  chrome.storage.sync.set({minCloud:min});
-  chrome.storage.sync.set({secCloud:sec});
 
   document.getElementById("sec").innerHTML = printTime(sec);
   document.getElementById("min").innerHTML = printTime(min);
   document.getElementById("hour").innerHTML = printTime(hour);
-}
-
-// function to upload current study session data to the cloud
-function loadData() {
-    // declare array with new data
-    var tempStudyDataArr = [hour, min, sec];
-    restoreData();
-
-    // add seconds to aggregate data, carry if needed
-    if (tempStudyDataArr[2] + tempStudyDataArr[2] >= 60) {
-      studyDataArr[1] = studyDataArr[1] + 1;
-      studyDataArr[2] = tempStudyDataArr[2] + studyDataArr[2] - 60;
-    }
-    else {
-      studyDataArr[2] = studyDataArr[2] + tempStudyDataArr[2];
-    }
-
-www    // add minutes to aggregate data, carry if needed
-    if (tempStudyDataArr[1] + studyDataArr[1] >= 60) {
-      studyDataArr[0] = studyDataArr[0] + 1;
-      studyDataArr[1] = tempStudyDataArr[1] + studyDataArr[1] - 60;
-    }
-    else {
-      studyDataArr[1] = studyDataArr[1] + tempStudyDataArr[1];
-    }
-
-    // add hours to aggregate data
-    studyDataArr[0] = studyDataArr[0] + tempStudyDataArr[0]
-
-    // store new aggregate study data back on the cloud
-    chrome.storage.sync.set({"studyDataList":studyDataArr}, function() {
-      console.log('Data was saved');
-    });
-
-    chrome.storage.sync.get(function(data){console.log(data)});
-}
-
-// restore the state of study data
-function restoreData() {
-    chrome.storage.sync.get(
-      ['studyDataList'],
-      function(items) {
-      studyDataArr = items.studyDataList;
-    });
-}
-
-function clearData() {
-    studyDataArr[0] = 0;
-    studyDataArr[1] = 0;
-    studyDataArr[2] = 0;
-
-    // store data that has been reset back to studyDataList
-    chrome.storage.sync.set({'studyDataList':studyDataArr}, function() {
-    console.log(input.value + 'was saved');
-  });
 }
 
 // This block enables links from popup.html to open in a new tab
@@ -191,14 +125,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
 // function to handle scrolling tab bar in popup.html
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
   //sets the style of each tab's display individually (text)
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
-    console.log(tabcontent[i]);
     // hides the other tabs' content
     tabcontent[i].style.display = "none";
   }
@@ -212,9 +144,10 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 
+
+//driving function for timer, sort of outdated but kept for now...
 function startStop() { /* Toggle StartStop */
     startstop = startstop + 1;
-    console.log("START STOP: " + sec);
     //chrome.browserAction.setBadgeText({text: '00:00'});
     if (startstop === 1) {
         //reset();
@@ -227,13 +160,8 @@ function startStop() { /* Toggle StartStop */
     }
 }
 
-    function printTime(i) {
-        if (i < 10) { // if condition that adds extra 0 integer if number is singular digit
-            i = "0" + i; // i would be converted to a string
-        }
-    return i;
-    }
-
+    //timer block, used to actively update popout html timer and increment
+    //forward each second
     function timer() {
         /* Main Timer */
         secOut = printTime(sec); // not always equal to sec
@@ -258,56 +186,48 @@ function startStop() { /* Toggle StartStop */
         }
     }
 
+    //calls interval function which allows for a timer tick every second
     function start() {
-        //convertFromSeconds();
-
-        console.log("Seconds converted: "+sec);
         x = setInterval(timer, 1000);
-
-        //when timer is running listen for events
-        console.log("Start : " + sec);
     }
 
+    //stops interval function
     function stop() {
         clearInterval(x);
-
-        console.log("Stop :" + switchOn);
     }
 
+    //function that 0s variables and updates html, may be outdated
     function reset() {
         sec = 0;
         min = 0;
         hour = 0;
-
-        console.log("IN RESET IN RESET");
 
         document.getElementById("sec").innerHTML = printTime(sec);
         document.getElementById("min").innerHTML = printTime(min);
         document.getElementById("hour").innerHTML = printTime(hour);
     }
 
+    //given total seconds of timer from background process, converts
+    // into HH:MM:SS format
     function convertFromSeconds(){
-      console.log("Sec REE "+sec);
       var temp = sec;
       sec = temp % 60;
       min = Math.floor(temp/60);
       hour = Math.floor(min / 60);
-      console.log("REEEEEEE" + sec);
     }
 
-
+    //function that updates total time spent studying field
     function updateGlobalTime(){
       var temp = 0;
 
+      //get aggregate time, stop process then update HTML with it
       chrome.storage.sync.get( {aggTime:0}, function(item){
          temp = item.aggTime;});
-         console.log("GLOBAL: "+temp);
       setTimeout(function(){
         seconds = temp % 60;
         var minutes = Math.floor(temp/60);
         var hours = Math.floor(minutes / 60);
 
-        console.log("seconds: "+ seconds + "minutes: "+minutes);
         document.getElementById("totalSec").innerHTML = printTime(seconds);
         document.getElementById("totalMin").innerHTML = printTime(minutes);
         document.getElementById("totalHour").innerHTML = printTime(hours);
