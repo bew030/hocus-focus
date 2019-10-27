@@ -67,7 +67,7 @@ function displayTimer(){
                  bgWindow.getSeconds()});
     setTimeout(function(){
       chrome.storage.sync.get(function(result){
-      sec = result.totalTime;
+      sec = result.totalTime+1; // add a second to account for delay in pulling time from background.js
       convertFromSeconds();
       console.log("GET SECONDS RETURNED" + sec);
     })
@@ -152,13 +152,6 @@ function restoreData() {
     });
 }
 
-function updateTotalDisplay() {
-    restoreData();
-    // document.getElementById("totalSec").innerHTML = printTime(studyDataArr[2]);
-    // document.getElementById("totalMin").innerHTML = printTime(studyDataArr[1]);
-    // document.getElementById("totalHour").innerHTML = printTime(studyDataArr[0]);
-}
-
 function clearData() {
     studyDataArr[0] = 0;
     studyDataArr[1] = 0;
@@ -229,11 +222,16 @@ function startStop() { /* Toggle StartStop */
 
     function timer() {
         /* Main Timer */
-        sec = sec+1;
         secOut = printTime(sec); // not always equal to sec
         minOut = printTime(min);
         hourOut = printTime(hour);
+        var time_string = String(minOut)+":"+String(secOut);
 
+        document.getElementById("sec").innerHTML = secOut;
+        document.getElementById("min").innerHTML = minOut;
+        document.getElementById("hour").innerHTML = hourOut;
+
+        sec = sec+1;
 
 
         if (sec == 60) {
@@ -245,7 +243,7 @@ function startStop() { /* Toggle StartStop */
             hour = hour+1;
         }
 
-        var time_string = String(minOut)+":"+String(secOut)
+
         //chrome.browserAction.setBadgeText({text: time_string});
 
         //console.log(timeRun);
@@ -254,10 +252,6 @@ function startStop() { /* Toggle StartStop */
        //total variables
 
         //each time variables
-
-        document.getElementById("sec").innerHTML = secOut;
-        document.getElementById("min").innerHTML = minOut;
-        document.getElementById("hour").innerHTML = hourOut;
     }
 
     function start() {
