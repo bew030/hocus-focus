@@ -12,7 +12,7 @@ function listenURLs(){
 }
 
 function stopListening(){
-    chrome.runtime.onMessage.removeListener(blockWebsite);
+    chrome.extension.onRequest.removeListener(blockWebsite);
 }
 
 function blockWebsite(callback){
