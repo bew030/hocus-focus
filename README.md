@@ -7,8 +7,22 @@ The project utilizes Google Chrome's extension API which include storing and ret
 
 Primary features of Hocus Focus that improve productivity include:
 - __A Website Blacklisting Feature__: Adding and removing of specified URLs on top of a given list of URLs that are disallowed by the extension, resulting in an immediately closed tab when the user tries to access it
+
+<p align="center">
+	<img src="https://github.com/bew030/lyft-challenge/blob/master/docs/ss/14.png" width=1000/>
+</p>
+
 - __An Interactive To-Do List__: An interactive to-do list that logs tasks specified by the user in Chrome storage, making it accessible even after the browser is closed
+
+<p align="center">
+	<img src="https://github.com/bew030/lyft-challenge/blob/master/docs/ss/14.png" width=1000/>
+</p>
+
 - __A Performance Stopwatch__: A timer that logs amount of time studied and aggregates this study, activated by a switch that will also prevent the user from accessing time-wasting sites
+
+<p align="center">
+	<img src="https://github.com/bew030/lyft-challenge/blob/master/docs/ss/14.png" width=1000/>
+</p>
 
 We'd like to give a big thank you to SD Hacks and all the sponsors for giving us this amazing opportunity. Please feel free to download and try the extension and if you have any feedback, issues or questions feel free to leave an issue or reach out to any of us by email. 
 
