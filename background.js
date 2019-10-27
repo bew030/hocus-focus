@@ -85,6 +85,7 @@ var min = 0;
 var hour = 0;
 var startstop = 0; // boolean condition for whether button should display start or stop
 var studyDataArr = [0, 0, 0]; //global array for total study data
+var timeRun = 0;
 
 function startStop() { /* Toggle StartStop */
     startstop = startstop + 1;
@@ -132,9 +133,13 @@ function startStop() { /* Toggle StartStop */
         var time_string = String(minOut)+":"+String(secOut)
         chrome.browserAction.setBadgeText({text: time_string});
 
-        console.log(time_string);
+        timeRun = timeRun + 1;
+        console.log(timeRun);
 
-        chrome.storage.sync.set({})
+
+       //total variables
+
+        //each time variables
 
       //  document.getElementById("sec").innerHTML = secOut;
       //  document.getElementById("min").innerHTML = minOut;
@@ -150,6 +155,7 @@ function startStop() { /* Toggle StartStop */
 
     function stop() {
         clearInterval(x);
+        reset();
 
         console.log("Stop :" + switchOn);
     }
@@ -158,8 +164,19 @@ function startStop() { /* Toggle StartStop */
         sec = 0;
         min = 0;
         hour = 0;
+        timeRun = 0;
+
+
+        chrome.storage.sync.set({hourCloud:hour});
+        chrome.storage.sync.set({minCloud:min});
+        chrome.storage.sync.set({secCloud:sec});
 
     //    document.getElementById("sec").innerHTML = printTime(sec);
     //    document.getElementById("min").innerHTML = printTime(min);
     //    document.getElementById("hour").innerHTML = printTime(hour);
+    }
+
+    function getSeconds(){
+      console.log("Returning :" + timeRun);
+      chrome.storage.sync.set({totalTime:timeRun});
     }

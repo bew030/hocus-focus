@@ -5,12 +5,13 @@ var hour = 0;
 var startstop = 0; // boolean condition for whether button should display start or stop
 var studyDataArr = [0, 0, 0]; //global array for total study data
 
-document.addEventListener('DOMContentLoaded', updateTotalDisplay);
+//document.addEventListener('DOMContentLoaded', displayTimer);
 var el = document.getElementById("togBtn");
 
 if(el){
     el.addEventListener("click", updateSwitch);
 }
+
 
 //get status of switch, push to cloud
 var switchOn = chrome.storage.sync.get({
@@ -19,6 +20,7 @@ var switchOn = chrome.storage.sync.get({
   switchOn = items.switchStatus;
   el.checked = switchOn;
   console.log(switchOn);
+  displayTimer();
 });
 
 
@@ -28,7 +30,6 @@ function updateSwitch(){
   if(switchOn){
     switchOn = false;
     displayReset();
-
     chrome.storage.sync.set({switchStatus:switchOn}, function() {
                 console.log('Stored'+switchOn+'in cloud');
               });
@@ -37,10 +38,11 @@ function updateSwitch(){
            bgWindow.stopListening()});
 
     chrome.runtime.getBackgroundPage(function(bgWindow){
-      bgWindow.startStop()});
+      bgWindow.stop()});
   }
   else{
     switchOn = true;
+    freshDisplayTimer();
     chrome.runtime.getBackgroundPage(function(bgWindow) {
            bgWindow.listenURLs()});
     chrome.storage.sync.set({switchStatus:switchOn}, function() {
@@ -48,12 +50,34 @@ function updateSwitch(){
               });
 
    chrome.runtime.getBackgroundPage(function(bgWindow){
-                bgWindow.startStop()});
+                bgWindow.start()});
   }
 }
 
-function displayTimer(){
+function freshDisplayTimer(){
+  displayReset();
+  start();
+}
 
+
+function displayTimer(){
+  console.log("In display timer");
+  if(switchOn){
+    chrome.runtime.getBackgroundPage(function(bgWindow){
+                 bgWindow.getSeconds()});
+    setTimeout(function(){
+      chrome.storage.sync.get(function(result){
+      sec = result.totalTime;
+      convertFromSeconds();
+      console.log("GET SECONDS RETURNED" + sec);
+    })
+
+  },500)
+    setTimeout(start, 500);
+  }
+  else{
+    displayReset();
+}
 }
 
 function printTime(i) {
@@ -64,9 +88,16 @@ return i;
 }
 
 function displayReset(){
+  stop();
   sec = 0;
   min = 0;
   hour = 0;
+
+  chrome.browserAction.setBadgeText({text: '00:00'});
+
+  chrome.storage.sync.set({hourCloud:hour});
+  chrome.storage.sync.set({minCloud:min});
+  chrome.storage.sync.set({secCloud:sec});
 
   document.getElementById("sec").innerHTML = printTime(sec);
   document.getElementById("min").innerHTML = printTime(min);
@@ -88,7 +119,7 @@ function loadData() {
       studyDataArr[2] = studyDataArr[2] + tempStudyDataArr[2];
     }
 
-    // add minutes to aggregate data, carry if needed
+www    // add minutes to aggregate data, carry if needed
     if (tempStudyDataArr[1] + studyDataArr[1] >= 60) {
       studyDataArr[0] = studyDataArr[0] + 1;
       studyDataArr[1] = tempStudyDataArr[1] + studyDataArr[1] - 60;
@@ -169,3 +200,93 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+function startStop() { /* Toggle StartStop */
+    startstop = startstop + 1;
+    console.log("START STOP: " + sec);
+    //chrome.browserAction.setBadgeText({text: '00:00'});
+    if (startstop === 1) {
+        //reset();
+        start();
+    }
+    else if (startstop === 2) {
+        startstop = 0;
+        stop();
+        //loadData();
+    }
+}
+
+    function printTime(i) {
+        if (i < 10) { // if condition that adds extra 0 integer if number is singular digit
+            i = "0" + i; // i would be converted to a string
+        }
+    return i;
+    }
+
+    function timer() {
+        /* Main Timer */
+        sec = sec+1;
+        secOut = printTime(sec); // not always equal to sec
+        minOut = printTime(min);
+        hourOut = printTime(hour);
+
+
+
+        if (sec == 60) {
+            min = min+1;
+            sec = 0;
+        }
+        if (min == 60) {
+            min = 0;
+            hour = hour+1;
+        }
+
+        var time_string = String(minOut)+":"+String(secOut)
+        //chrome.browserAction.setBadgeText({text: time_string});
+
+        //console.log(timeRun);
+
+
+       //total variables
+
+        //each time variables
+
+        document.getElementById("sec").innerHTML = secOut;
+        document.getElementById("min").innerHTML = minOut;
+        document.getElementById("hour").innerHTML = hourOut;
+    }
+
+    function start() {
+        //convertFromSeconds();
+
+        console.log("Seconds converted: "+sec);
+        x = setInterval(timer, 1000);
+
+        //when timer is running listen for events
+        console.log("Start : " + sec);
+    }
+
+    function stop() {
+        clearInterval(x);
+
+        console.log("Stop :" + switchOn);
+    }
+
+    function reset() {
+        sec = 0;
+        min = 0;
+        hour = 0;
+
+        document.getElementById("sec").innerHTML = printTime(sec);
+        document.getElementById("min").innerHTML = printTime(min);
+        document.getElementById("hour").innerHTML = printTime(hour);
+    }
+
+    function convertFromSeconds(){
+      console.log("Sec REE "+sec);
+      var temp = sec;
+      sec = temp % 60;
+      min = Math.floor(temp/60);
+      hour = Math.floor(min / 60);
+      console.log("REEEEEEE" + sec);
+    }
