@@ -15,7 +15,6 @@ function listenURLs(){
 
 function stopListening(){
     chrome.webNavigation.onBeforeNavigate.removeListener(blockWebsite);
-    chrome.runtime.onMessage.removeListener(blockWebsite);
 }
 
 function blockWebsite(callback){
