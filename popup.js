@@ -7,6 +7,41 @@ var studyDataArr = [0, 0, 0]; //global array for total study data
 
 document.addEventListener('DOMContentLoaded', updateTotalDisplay);
 var el = document.getElementById("togBtn");
+
+//get status of switch, push to cloud
+var switchOn = chrome.storage.sync.get({
+  switchStatus:false,
+}, function(items) {
+  switchOn = items.switchStatus;
+  el.checked = switchOn;
+  console.log(switchOn);
+});
+
+
+//updates value of switch and invoked background methods
+function updateSwitch(){
+  console.log("Changing value!");
+  if(switchOn){
+    switchOn = false;
+
+    chrome.storage.sync.set({switchStatus:switchOn}, function() {
+                console.log('Stored'+switchOn+'in cloud');
+              });
+
+    chrome.runtime.getBackgroundPage(function(bgWindow) {
+           bgWindow.stopListening()});
+  }
+  else{
+    switchOn = true;
+    chrome.runtime.getBackgroundPage(function(bgWindow) {
+           bgWindow.listenURLs()});
+    chrome.storage.sync.set({switchStatus:switchOn}, function() {
+                console.log('Stored'+switchOn+'in cloud');
+              });
+  }
+}
+
+
 if(el){
     el.addEventListener("click", startStop);
 }
@@ -14,6 +49,7 @@ if(el){
 function startStop() { /* Toggle StartStop */
     startstop = startstop + 1;
     chrome.browserAction.setBadgeText({text: '00:00'});
+    updateSwitch();
     if (startstop === 1) {
         reset();
         start();
@@ -66,15 +102,13 @@ function startStop() { /* Toggle StartStop */
         x = setInterval(timer, 1000);
 
         //when timer is running listen for events
-        chrome.runtime.getBackgroundPage(function(bgWindow) {
-           bgWindow.listenURLs();});
+        console.log("Start : " + switchOn);
     }
 
     function stop() {
         clearInterval(x);
 
-        chrome.runtime.getBackgroundPage(function(bgWindow) {
-           bgWindow.stopListening();});
+        console.log("Stop :" + switchOn);
     }
 
     function reset() {
