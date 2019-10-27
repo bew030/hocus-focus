@@ -114,11 +114,11 @@ function startStop() { /* Toggle StartStop */
     function timer() {
         /* Main Timer */
 
-        secOut = printTime(sec); 
+        secOut = printTime(sec);
         minOut = printTime(min);
         hourOut = printTime(hour);
         sec = sec+1;
-        
+
         if (sec == 60) {
           min = min+1;
           sec = 0;
@@ -132,7 +132,7 @@ function startStop() { /* Toggle StartStop */
 
 
 
-        
+
 
         var time_string = String(minOut)+":"+String(secOut);
         chrome.browserAction.setBadgeText({text: time_string});
@@ -173,7 +173,7 @@ function startStop() { /* Toggle StartStop */
 
         console.log("resetting!")
         chrome.storage.sync.get( {aggTime:0}, function(item){
-          console.log(item.aggTime);
+          console.log("CURRENT" + (item.aggTime + temp));
           //temp = temp + item.aggTime;
 
           chrome.storage.sync.set({aggTime:(temp+item.aggTime)})
