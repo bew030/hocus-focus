@@ -11,6 +11,7 @@ if(el){
     el.addEventListener("click", startStop);
 }
 
+
 function startStop() { /* Toggle StartStop */
     startstop = startstop + 1;
     chrome.browserAction.setBadgeText({text: '00:00'});
@@ -21,7 +22,7 @@ function startStop() { /* Toggle StartStop */
     else if (startstop === 2) {
         startstop = 0;
         stop();
-        loadData();
+        //loadData();
     }
 }
 
