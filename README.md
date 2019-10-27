@@ -7,4 +7,4 @@ Features of Hocus Focus that improve productivity include:
 - An interactive to-do list that logs tasks specified by the user in Chrome storage, making it accessible even after the browser is closed
 - A timer that logs amount of time studied and aggregates this study, activated by a switch that will also prevent the user from accessing time-wasting sites
 
-- Created by Sebastian Dogaru, Bernard Wong, and Neil Tengbumroong
+Created by Sebastian Dogaru, Bernard Wong, and Neil Tengbumroong
