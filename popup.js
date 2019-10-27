@@ -249,16 +249,6 @@ function startStop() { /* Toggle StartStop */
             min = 0;
             hour = hour+1;
         }
-
-
-        //chrome.browserAction.setBadgeText({text: time_string});
-
-        //console.log(timeRun);
-
-
-       //total variables
-
-        //each time variables
     }
 
     function start() {
