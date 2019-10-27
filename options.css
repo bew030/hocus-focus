@@ -30,3 +30,41 @@ position: absolute
 } /* right middle */
 .div4 { grid-area: 3 / 2 / 5 / 6;
 } /* bottom */
+
+.icon-bar {
+  position: absolute;
+  top: 625px;
+  left: 5%;
+  bottom: 42px;
+}
+
+/* Style the icon bar links */
+.icon-bar a {
+  /*display: block;*/
+  text-align: center;
+  padding: 10px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+/* Style the social media icons with color, if you want */
+.icon-bar a:hover {
+  background-color: #fff;
+}
+
+.facebook {
+  color: black;
+}
+
+.twitter {
+  color: black;
+}
+
+.google {
+  color: black;
+}
+
+a:hover {
+  color: blue;
+}
