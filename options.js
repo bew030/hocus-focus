@@ -93,6 +93,9 @@ document.getElementById('removeURL').addEventListener('click',removeURL);
 
 //////////////////////////TODO LIST///////////////////////////////////
 
+
+var array_possible_audio = ["Travis Scott It's Lit.mp3","Travis Scott Skrt.mp3","Travis Scott Straight Up Two.mp3","Travis Scott Straight Up.mp3"];
+
 var id_iterator = 0
 var list_ids;
 
@@ -135,6 +138,12 @@ function addToDoList() {
 function checkboxAction() {
     var checkBox = this;
     var finishList = document.getElementById('finish_list');
+    var soundCondition = document.getElementById('soundOption').checked;
+    var random_option = Math.floor(Math.random() * array_possible_audio.length); 
+    var audio = new Audio(array_possible_audio[random_option]);
+    if (soundCondition == false ){
+      audio.play();
+    }
 
     if (checkBox.checked == true){
         var li = document.createElement("div");
