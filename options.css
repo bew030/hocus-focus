@@ -1,0 +1,75 @@
+body {
+  background: rgb(96,47,47);
+  background: linear-gradient(45deg, rgba(96,47,47,0.2) 0%, rgba(218,228,227,0.4) 0%, rgba(193,239,252,0.5) 100%);
+  min-height: 100%;
+}
+
+
+.wrapper {
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+grid-template-rows: repeat(4, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+width: 100vw;
+height: 100vh;
+position: absolute
+}
+
+
+.div1 { /* left navbar side */
+  grid-area: 1 / 1 / 5 / 2;
+  border-right: 3px solid gray;
+  background-color: #ceebf4
+}
+.div2 { /* left middle */
+  grid-area: 1 / 2 / 3 / 4;
+  border-right: 3px solid gray;
+  overflow: auto;
+}
+.div3 { /* right middle */
+  grid-area: 1 / 4 / 3 / 6;
+  overflow: auto;
+}
+.div4 { /* bottom */
+  grid-area: 3 / 2 / 5 / 6;
+  border-top: 3px solid gray;
+}
+
+.icon-bar {
+  position: absolute;
+  top: 625px;
+  left: 5%;
+  bottom: 42px;
+}
+
+/* Style the icon bar links */
+.icon-bar a {
+  /*display: block;*/
+  text-align: center;
+  padding: 10px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+/* Style the social media icons with color, if you want */
+.icon-bar a:hover {
+  background-color: #fff;
+}
+
+.facebook {
+  color: black;
+}
+
+.twitter {
+  color: black;
+}
+
+.google {
+  color: black;
+}
+
+a:hover {
+  color: blue;
+}
