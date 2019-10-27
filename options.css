@@ -26,8 +26,10 @@ position: absolute
   grid-area: 1 / 2 / 3 / 4;
   overflow: auto;
 }
-.div3 { grid-area: 1 / 4 / 3 / 6;
-} /* right middle */
+.div3 { /* right middle */
+  grid-area: 1 / 4 / 3 / 6;
+  overflow: auto;
+}
 .div4 { grid-area: 3 / 2 / 5 / 6;
 } /* bottom */
 
