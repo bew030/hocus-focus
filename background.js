@@ -89,7 +89,6 @@ var timeRun = 0;
 
 function startStop() { /* Toggle StartStop */
     startstop = startstop + 1;
-    //chrome.browserAction.setBadgeText({text: '00:00'});
     if (startstop === 1) {
         reset();
         start();
@@ -114,23 +113,28 @@ function startStop() { /* Toggle StartStop */
 
     function timer() {
         /* Main Timer */
-        sec = sec+1;
-        secOut = printTime(sec); // not always equal to sec
+
+        secOut = printTime(sec); 
         minOut = printTime(min);
         hourOut = printTime(hour);
-
-
-
+        sec = sec+1;
+        
         if (sec == 60) {
-            min = min+1;
-            sec = 0;
-        }
-        if (min == 60) {
-            min = 0;
-            hour = hour+1;
-        }
+          min = min+1;
+          sec = 0;
+      }
+      if (min == 60) {
+          min = 0;
+          hour = hour+1;
+      }
 
-        var time_string = String(minOut)+":"+String(secOut)
+
+
+
+
+        
+
+        var time_string = String(minOut)+":"+String(secOut);
         chrome.browserAction.setBadgeText({text: time_string});
 
         timeRun = timeRun + 1;
