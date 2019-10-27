@@ -140,6 +140,7 @@ grid-row-gap: 10px;
 }
 /* end Timer's tab elements */
 
+/* Modifies the settings button */
 a.button {
   -webkit-appearance: button;
   -moz-appearance: button;
@@ -148,7 +149,12 @@ a.button {
   text-decoration: none;
   color: initial;
   padding: 4px 4px
-  
+}
+
+/* Modifies margin for horizontal rule tag */
+hr {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 

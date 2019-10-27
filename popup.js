@@ -94,7 +94,7 @@ function loadData() {
     restoreData();
 
     // add seconds to aggregate data, carry if needed
-    if (tempStudyDataArr[2] + studyDataArr[2] >= 60) {
+    if (tempStudyDataArr[2] + tempStudyDataArr[2] >= 60) {
       studyDataArr[1] = studyDataArr[1] + 1;
       studyDataArr[2] = tempStudyDataArr[2] + studyDataArr[2] - 60;
     }

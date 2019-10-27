@@ -1,5 +1,6 @@
 var urlarray = [];
 var objarray = [{urlContains: "reddit.com"}];
+console.log("background running");
 
 //work to be done when extension is installed
 //document.addEventListener('DOMContentLoaded', primeURLarray(primeURLarray2()));
@@ -11,7 +12,7 @@ function listenURLs(){
 }
 
 function stopListening(){
-    chrome.extension.onRequest.removeListener(blockWebsite);
+    chrome.runtime.onMessage.removeListener(blockWebsite);
 }
 
 function blockWebsite(callback){

@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Study Aid Popup</title>
-    <body style="width:200px; height:200px">
+    <body style="width:200px; height:300px">
     <link rel="stylesheet" href="popup.css">
   </head>
   <body>
@@ -20,7 +20,7 @@
     </div>
 
       <!-- Creates line between logo and name and rest of elements -->
-      <hr margin: 10px>
+      <hr>
       <div class="innerwrapper">
         <div class="innerbox1" style="text-align: center">
           <!--Class Switch handles the toggle button-->
@@ -44,7 +44,12 @@
         </div>
 
         <div class="innerbox3" style="text-align: center">
-          <h3>Total Hours Studied: </h3>
+          <h3>Total Hours Studied:
+            <h1>
+                <span id="totalHour">00</span> :
+                <span id="totalMin">00</span> :
+                <span id="totalSec">00</span>
+            </h1></h3>
           <a href="options.html" class="button">Settings</a>
         </div>
       </div>
