@@ -128,6 +128,15 @@ function addToDoList(){
     */
 }
 
+function check_if_checkbox_checked() {
+  if (document.getElementById('xxx').checked) 
+  {
+      document.getElementById('totalCost').value = 10;
+  } else {
+      calculate();
+  }
+}
+
 function restoreToDoList(){
   /*
   //retrive array from cloud

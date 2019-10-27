@@ -94,7 +94,7 @@ function loadData() {
     restoreData();
 
     // add seconds to aggregate data, carry if needed
-    if (tempStudyDataArr[2] + studyDataArr[2] >= 60) {
+    if (tempStudyDataArr[2] + tempStudyDataArr[2] >= 60) {
       studyDataArr[1] = studyDataArr[1] + 1;
       studyDataArr[2] = tempStudyDataArr[2] + studyDataArr[2] - 60;
     }
@@ -133,9 +133,9 @@ function restoreData() {
 
 function updateTotalDisplay() {
     restoreData();
-    document.getElementById("totalSec").innerHTML = printTime(studyDataArr[2]);
-    document.getElementById("totalMin").innerHTML = printTime(studyDataArr[1]);
-    document.getElementById("totalHour").innerHTML = printTime(studyDataArr[0]);
+    // document.getElementById("totalSec").innerHTML = printTime(studyDataArr[2]);
+    // document.getElementById("totalMin").innerHTML = printTime(studyDataArr[1]);
+    // document.getElementById("totalHour").innerHTML = printTime(studyDataArr[0]);
 }
 
 function clearData() {
@@ -162,3 +162,24 @@ document.addEventListener('DOMContentLoaded', function () {
         })();
     }
 });
+
+
+// function to handle scrolling tab bar in popup.html
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  //sets the style of each tab's display individually (text)
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    console.log(tabcontent[i]);
+    // hides the other tabs' content
+    tabcontent[i].style.display = "none";
+  }
+  // sets the tablinks to active
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    // keeps the tab name's highlighted only if it is clicked
+    tablinks[i].className = tablinks[i].className.replace("active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
