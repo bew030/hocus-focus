@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Study Aid",
-  "description": "This extension will help you study",
+  "name": "Hocus Focus",
+  "description": "An extension to keep you on track!",
   "version": "1.0",
   "options_page": "options.html",
 
@@ -21,12 +21,12 @@
 ],
 
   "icons": {
-    "16": "address_book.png",
-    "48": "address_book.png",
-    "128": "address_book.png"},
+    "16": "Wand.png",
+    "48": "Wand.png",
+    "128": "Wand.png"},
 
   "browser_action": {
-   "default_icon": "address_book.png",
+   "default_icon": "Wand.png",
    "default_popup": "popup.html"
   },
   "permissions": [

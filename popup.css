@@ -148,7 +148,9 @@ a.button {
 
   text-decoration: none;
   color: initial;
-  padding: 4px 4px
+  padding: 4px 4px;
+  margin-bottom: 10px;
+  border-radius: 50%;
 }
 
 /* Modifies margin for horizontal rule tag */
