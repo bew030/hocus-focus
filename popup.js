@@ -8,6 +8,12 @@ var studyDataArr = [0, 0, 0]; //global array for total study data
 //document.addEventListener('DOMContentLoaded', displayTimer);
 var el = document.getElementById("togBtn");
 
+var clearBtn = document.getElementById("clear_button");
+clearBtn.addEventListener("click",function(){
+  chrome.storage.sync.set({aggTime:0},function(){});
+  setTimeout(updateGlobalTime,200);
+});
+
 if(el){
     el.addEventListener("click", updateSwitch);
 }
