@@ -79,3 +79,85 @@ function primeURLarray2(){
 }
 
 /////////////////////////////////////////////////////////////////////////////
+var x;
+var sec = 1;
+var min = 0;
+var hour = 0;
+var startstop = 0; // boolean condition for whether button should display start or stop
+var studyDataArr = [0, 0, 0]; //global array for total study data
+
+function startStop() { /* Toggle StartStop */
+    startstop = startstop + 1;
+    //chrome.browserAction.setBadgeText({text: '00:00'});
+    if (startstop === 1) {
+        reset();
+        start();
+    }
+    else if (startstop === 2) {
+        startstop = 0;
+        stop();
+        //loadData();
+    }
+}
+
+    var sec = 1;
+    var min = 0;
+    var hour = 0;
+
+    function printTime(i) {
+        if (i < 10) { // if condition that adds extra 0 integer if number is singular digit
+            i = "0" + i; // i would be converted to a string
+        }
+    return i;
+    }
+
+    function timer() {
+        /* Main Timer */
+        sec = sec+1;
+        secOut = printTime(sec); // not always equal to sec
+        minOut = printTime(min);
+        hourOut = printTime(hour);
+
+
+
+        if (sec == 60) {
+            min = min+1;
+            sec = 0;
+        }
+        if (min == 60) {
+            min = 0;
+            hour = hour+1;
+        }
+
+        var time_string = String(minOut)+":"+String(secOut)
+        chrome.browserAction.setBadgeText({text: time_string});
+
+        console.log(time_string);
+
+      //  document.getElementById("sec").innerHTML = secOut;
+      //  document.getElementById("min").innerHTML = minOut;
+      //  document.getElementById("hour").innerHTML = hourOut;
+    }
+
+    function start() {
+        x = setInterval(timer, 1000);
+
+        //when timer is running listen for events
+        console.log("Start : " + switchOn);
+    }
+
+    function stop() {
+        clearInterval(x);
+
+        console.log("Stop :" + switchOn);
+    }
+
+    function reset() {
+        sec = 0;
+        min = 0;
+        hour = 0;
+
+    //    document.getElementById("sec").innerHTML = printTime(sec);
+    //    document.getElementById("min").innerHTML = printTime(min);
+    //    document.getElementById("hour").innerHTML = printTime(hour);
+    }
